@@ -1,0 +1,85 @@
+# require: rubocop-rails
+---
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.1
+  TargetRailsVersion: 7
+  DisplayCopNames: true
+  Exclude:
+    - 'tmp/**/*'
+    - 'log/**/*'
+    - 'public/**/*'
+    - 'bin/**/*'
+    - 'vendor/**/*'
+    - 'node_modules/**/*'
+    - 'db/migrate/*'
+    - 'db/schema.rb'
+
+Rails:
+  Enabled: true
+
+require:
+  - rubocop-minitest
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rails-accessibility
+  - rubocop-rake
+
+Style/Documentation:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false
+Style/IfUnlessModifier:
+  Enabled: false
+Style/Lambda:
+  Enabled: false
+Style/NegatedIf:
+  Enabled: false
+Layout/EmptyLinesAroundClassBody:
+  Enabled: false
+Layout/LineLength:
+  Max: 180
+  Exclude:
+    - 'config/initializers/devise.rb'
+    - 'app/views/**/*.jbuilder'
+
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: never
+
+Style/StructInheritance:
+  Exclude:
+    - 'app/policies/*.rb'
+
+Metrics/BlockLength:
+  Max: 100
+Metrics/AbcSize:
+  Max: 80
+Metrics/ClassLength:
+  Max: 250
+  Exclude:
+    - 'test/**/*.rb'
+Metrics/CyclomaticComplexity:
+  Max: 20
+Metrics/MethodLength:
+  CountComments: false
+  Max: 120
+Metrics/PerceivedComplexity:
+  Max: 20
+
+Rails/DynamicFindBy:
+  Enabled: true
+
+Rails/UnknownEnv:
+  Environments:
+    - dev
+    - development
+    - production
+    - staging
+    - test
+
+RailsAccessibility/ImageHasAlt:
+  Enabled: true
+RailsAccessibility/NoPositiveTabindex:
+  Enabled: true
+RailsAccessibility/NoRedundantImageAlt:
+  Enabled: true
