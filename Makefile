@@ -10,6 +10,8 @@ install:
 	bundle install
 lint:
 	rubocop
+lint-slim:
+	slim-lint app/views/
 pull:
 	git pull origin $(BRANCH)
 push:
