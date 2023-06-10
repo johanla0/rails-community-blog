@@ -22,7 +22,6 @@ require:
   - rubocop-minitest
   - rubocop-performance
   - rubocop-rails
-  - rubocop-rails-accessibility
   - rubocop-rake
 
 Style/Documentation:
