@@ -34,15 +34,9 @@ jobs:
           cache: 'npm'
       # Add or replace dependency steps here
       - name: Install Ruby and gems
-        # uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
-        # with:
-          # bundler-cache: true
-      - run: bundle config set --local path 'vendor/bundle'
-      - run: bundle install
-      # Add or replace database setup steps here
-      - run: bin/rails db:create
-      - run: bin/rails db:migrate
-      - name: Install dependencies
-      - run: yarn install --cache-folder .yarn-cache
-      - run: bundle exec rails assets:precompile
+        uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
+        with:
+          bundler-cache: true
+
+      - run: make ci-setup
       - run: make check
