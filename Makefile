@@ -6,12 +6,22 @@ branch:
 	git checkout $(ARGS) > /dev/null 2>&1 || git checkout -b $(ARGS)
 c:
 	bin/rails console -- --noautocomplete
+check: lint test
 install:
 	bundle install
-lint:
-	rubocop
-lint-slim:
-	slim-lint app/views/
+lint: lint-code lint-style
+lint-code:
+	bundle exec rubocop
+	bundle exec slim-lint app/views/
+	make lint-eslint
+lint-eslint:
+	npx eslint app/javascript --ext .js
+lint-eslint-fix:
+	npx eslint app/javascript --ext .js --fix
+lint-style:
+	npx stylelint "**/*.scss" "!**/vendor/**"
+linter-code-fix:
+	bundle exec rubocop -A
 pull:
 	git pull origin $(BRANCH)
 push:
