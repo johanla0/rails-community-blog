@@ -6,6 +6,13 @@ branch:
 	git checkout $(ARGS) > /dev/null 2>&1 || git checkout -b $(ARGS)
 c:
 	bin/rails console -- --noautocomplete
+ci-setup:
+	bundle config set --local path 'vendor/bundle'
+	bundle install
+	bin/rails db:create
+	bin/rails db:migrate
+	yarn install --cache-folder .yarn-cache
+	bundle exec rails assets:precompile
 check: lint test
 install:
 	bundle install
