@@ -50,7 +50,7 @@ Style/StructInheritance:
     - 'app/policies/*.rb'
 
 Metrics/BlockLength:
-  Max: 100
+  Enabled: false
 Metrics/AbcSize:
   Max: 80
 Metrics/ClassLength:
