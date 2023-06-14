@@ -1,0 +1,21 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id         :integer          not null, primary key
+#  first_name :string
+#  last_name  :string
+#  email      :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+john:
+  first_name: John
+  last_name: Doe
+  email: john@test.com
+
+jane:
+  first_name: Jane
+  last_name: Doe
+  email: jane@test.com

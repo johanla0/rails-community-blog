@@ -1,0 +1,14 @@
+---
+en:
+  activerecord:
+    models:
+      post: post
+  attributes:
+    body: Text
+  errors:
+    messages:
+      blank: should not be empty
+  helpers:
+    submit:
+      post:
+        create: Publish %{model}

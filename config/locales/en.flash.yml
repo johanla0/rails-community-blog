@@ -1,0 +1,12 @@
+---
+en:
+  flash:
+    success:
+      posts:
+        create: Post has been published
+        destroy: Post has been deleted
+        update: Post has been updated
+      users:
+        create: User has been published
+        destroy: User has been deleted
+        update: User has been updated

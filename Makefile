@@ -14,6 +14,8 @@ ci-setup:
 	yarn install --cache-folder .yarn-cache
 	bundle exec rails assets:precompile
 check: lint test
+db!:
+	bin/rails db:drop:_unsafe db:create db:migrate db:fixtures:load db:seed
 install:
 	bundle install
 lint: lint-code lint-style
@@ -45,6 +47,6 @@ uncommit:
 upd:
 	git merge master --no-edit
 webpack:
-	bin/yarn build --watch
+	yarn build --watch
 
 .PHONY: test

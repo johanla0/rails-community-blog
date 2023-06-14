@@ -1,0 +1,8 @@
+header.d-flex.flex-wrap.align-items-center.justify-content-center.justify-content-md-between.py-3.mb-4.border-bottom
+  = link_to root_path do
+    = image_tag 'logo.jpg', height: '30', alt: 'logo'
+  .col-md-3.text-end
+    ul.nav.col-md-auto.justify-content-end
+      li= link_to t('new_post'), new_post_path, class: 'nav-link px-2'
+      li= link_to t('sign_in'), '#', class: 'nav-link px-2'
+      li= link_to t('sign_up'), '#', class: 'nav-link px-2'

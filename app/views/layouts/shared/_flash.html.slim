@@ -1,0 +1,6 @@
+- flash.each do |type, msg|
+  .toast.align-items-center.position-absolute.top-0.end-0 data-controller='toast'
+    .d-flex
+      .toast-body
+        = msg
+      button.btn-close.me-2.m-auto type='button' data-bs-dismiss='toast' aria-label='Close'

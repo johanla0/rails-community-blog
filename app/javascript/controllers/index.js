@@ -4,6 +4,6 @@
 
 import { application } from './application';
 
-import HelloController from './hello_controller';
+import ToastController from './toast_controller';
 
-application.register('hello', HelloController);
+application.register('toast', ToastController);

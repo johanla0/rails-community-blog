@@ -1,0 +1,26 @@
+# == Schema Information
+#
+# Table name: posts
+#
+#  id         :integer          not null, primary key
+#  title      :string
+#  body       :text
+#  user_id    :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+one:
+  title: <%= Faker::Book.title %>
+  body: <%= Faker::Lorem.paragraph_by_chars(number: 5000, supplemental: false) %>
+  user: john
+
+two:
+  title: <%= Faker::Book.title %>
+  body: <%= Faker::Lorem.paragraph_by_chars(number: 10_000, supplemental: false) %>
+  user: jane
+
+three:
+  title: <%= Faker::Book.title %>
+  body: <%= Faker::Lorem.paragraph_by_chars(number: 20_000, supplemental: false) %>
+  user: jane

@@ -1,0 +1,18 @@
+nav aria-label='breadcrumb'
+  ol.breadcrumb
+    li.breadcrumb-item
+      = link_to t('all_posts'), root_path
+    li.breadcrumb-item.active aria-current='page'
+      = @post.title
+
+.my-4 id="#{dom_id @post}"
+  h1.mb-3= @post.title
+  p=< render partial: 'posts/shared/user_badge', locals: { post: @post }
+  p.date= l(@post.created_at, format: :short)
+  p=< @post.body
+
+.mb-3
+  => link_to t('edit'), edit_post_path(@post)
+  '|
+
+  = link_to t('destroy'), @post, data: { turbo_method: :delete, turbo_confirm: t('destroy_confirmation') }, class: 'link-danger'
