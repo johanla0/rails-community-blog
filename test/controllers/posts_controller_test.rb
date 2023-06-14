@@ -39,6 +39,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should update post' do
     patch post_path(@post), params: { post: { body: @post.body, title: @post.title } }
+
     assert_redirected_to post_path(@post)
   end
 
