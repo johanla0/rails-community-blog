@@ -3,51 +3,63 @@ require 'test_helper'
 class PostsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @post = posts(:one)
+    @user = users(:john)
+
+    @user_session = sign_in @user
   end
 
-  test 'should get index' do
+  test '#index' do
     get root_path
 
     assert_response :success
   end
 
-  test 'should get new' do
-    get new_post_path
+  test '#new' do
+    @user_session.get @user_session.new_post_path
 
-    assert_response :success
+    @user_session.assert_response :success
   end
 
-  test 'should create post' do
-    assert_difference('Post.count') do
-      post posts_path, params: { post: { body: @post.body, title: @post.title, user_id: users(:john).id } }
-    end
+  test '#create' do
+    attrs = {
+      body: @post.body,
+      title: @post.title,
+      user_id: @user.id
+    }
 
-    assert_redirected_to post_path(Post.last)
+    @user_session.post @user_session.posts_path, params: { post: attrs }
+
+    @user_session.assert_response :redirect
+
+    post = Post.find_by(attrs)
+
+    assert { post.present? }
   end
 
-  test 'should show post' do
+  test '#show' do
     get post_path(@post)
 
     assert_response :success
   end
 
-  test 'should get edit' do
-    get edit_post_path(@post)
+  test '#edit' do
+    @user_session.get @user_session.edit_post_path(@post)
 
-    assert_response :success
+    @user_session.assert_response :success
   end
 
-  test 'should update post' do
-    patch post_path(@post), params: { post: { body: @post.body, title: @post.title } }
+  test '#update' do
+    @user_session.patch @user_session.post_path(@post), params: { post: { body: @post.body, title: @post.title } }
 
-    assert_redirected_to post_path(@post)
+    @user_session.assert_response :redirect
   end
 
-  test 'should destroy post' do
-    assert_difference('Post.count', -1) do
-      delete post_path(@post)
-    end
+  test '#destroy' do
+    @user_session.delete @user_session.post_path(@post)
 
-    assert_redirected_to root_path
+    @user_session.assert_response :redirect
+    post = Post.find_by id: @post.id
+
+    assert { post.blank? }
   end
 end

@@ -8,10 +8,14 @@ en:
     labels:
       defaults:
         body: Content
+        password: New password
+        password_confirmation: Confirm your new password
     'no': 'No'
     placeholders:
       defaults:
         body: Enter text
+        password: Enter password
+        password_confirmation: Enter confirmation
         title: Enter title
     required:
       mark: '*'

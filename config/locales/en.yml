@@ -35,10 +35,16 @@ en:
   destroy: Delete
   destroy_confirmation: Are you sure?
   edit: Edit
+  hello: Hello, %{name}!
+  log_out: Log out
+  my_profile: My profile
   new_post: New post
   posts:
     edit:
       edit: Editing post
+    show:
+      created_at: 'Created:'
+      updated_at: 'Updated:'
   removed_author: No author
   show: Show
   show_post: Show this post
@@ -48,3 +54,11 @@ en:
     one: 1 minute
     other: '%{count} minutes'
   title: Community blog
+  users:
+    new:
+      edit_user: Edit user
+      new_user: New user
+    show:
+      create: Create new post
+      posts_blank: Your posts will appear here
+  welcome: Welcome, %{name}!

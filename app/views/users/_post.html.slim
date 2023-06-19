@@ -1,8 +1,15 @@
-.card.p-3.mb-3 id="#{dom_id post}"
-  h5
-    = link_to post.title, post
-  p
-    =< post.body.truncate(150)
-  .d-flex.gap-2
-    == render partial: 'posts/shared/time_to_read', locals: { post: }
-    == render partial: 'posts/shared/date', locals: { date: post.created_at }
+article.card.p-3.mb-3 id="#{dom_id post}"
+  .position-relative
+    h5.mb-3 = link_to post.title, post
+    .d-flex.position-absolute.top-0.end-0.gap-2
+      - if policy(post).edit?
+        = link_to edit_post_path(post), class: 'fs-6' do
+          i.bi.bi-pencil-square
+      - if policy(post).destroy?
+        = link_to post, data: { turbo_method: :delete, turbo_confirm: t('destroy_confirmation') }, class: 'fs-6 link-danger'
+          i.bi.bi-trash
+    p
+      = post.body.truncate(150)
+    .d-flex.gap-2
+      == render partial: 'posts/shared/time_to_read', locals: { post: }
+      == render partial: 'posts/shared/date', locals: { date: post.updated_at }

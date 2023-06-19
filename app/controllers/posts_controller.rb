@@ -12,14 +12,18 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = Post.new
+    authorize @post
   end
 
   # GET /posts/1/edit
-  def edit; end
+  def edit
+    authorize @post
+  end
 
   # POST /posts or /posts.json
   def create
     @post = Post.new(post_params)
+    authorize @post
 
     if @post.save
       redirect_to post_path(@post), notice: I18n.t(".flash.success.#{controller_name}.#{params[:action]}")

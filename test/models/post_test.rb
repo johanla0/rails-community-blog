@@ -18,7 +18,7 @@ class PostTest < ActiveSupport::TestCase
     assert_predicate(post, :valid?)
   end
 
-  test 'invalid without user' do
+  test 'invalid post without user' do
     post = Post.create(
       title: Faker::Book.title,
       body: Faker::Lorem.paragraph_by_chars(number: 250, supplemental: false)

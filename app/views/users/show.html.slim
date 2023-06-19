@@ -11,13 +11,21 @@ div id="#{dom_id @user}"
       .card.p-3.pb-5
         .position-relative
           .d-flex.position-absolute.top-0.end-0.gap-2
-            = link_to edit_user_path(@user), class: 'fs-4' do
-              i.bi.bi-pencil-square
-            = link_to @post, data: { turbo_method: :delete, turbo_confirm: t('destroy_confirmation') }, class: 'fs-4 link-danger'
-              i.bi.bi-trash
+            - if policy(@user).edit?
+              = link_to edit_user_path(@user), class: 'fs-4' do
+                i.bi.bi-pencil-square
+            - if policy(@user).destroy?
+              = link_to @user, data: { turbo_method: :delete, turbo_confirm: t('destroy_confirmation') }, class: 'fs-4 link-danger'
+                i.bi.bi-trash
           .d-flex.flex-column.align-items-center.text-center
             i.bi.bi-person-circle.display-1.mb-3
-            h2= @user.name
-            .small= @user.email
+            h2 = @user.name
+            .small = @user.email
     .col-md-8
-      == render partial: 'post', collection: @posts
+      - if @posts.present?
+        == render partial: 'post', collection: @posts
+      - else
+        p.text-center
+          i.bi.bi-layout-text-sidebar.fs-1.d-block
+          = t('.posts_blank')
+          = link_to t('.create'), new_post_path, class: 'd-block mt-3'

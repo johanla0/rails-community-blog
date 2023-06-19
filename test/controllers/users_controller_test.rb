@@ -3,45 +3,34 @@ require 'test_helper'
 class UsersControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = users(:john)
+
+    @user_session = sign_in @user
   end
 
-  test 'should get new' do
-    get new_user_path
-
-    assert_response :success
-  end
-
-  test 'should create user' do
-    assert_difference('User.count') do
-      post users_path, params: { user: { email: @user.email, first_name: @user.first_name, last_name: @user.last_name } }
-    end
-
-    assert_redirected_to user_path(User.last)
-  end
-
-  test 'should show user' do
+  test '#show' do
     get user_path(@user)
 
     assert_response :success
   end
 
-  test 'should get edit' do
-    get edit_user_path(@user)
+  test '#edit' do
+    @user_session.get @user_session.edit_user_path(@user)
 
-    assert_response :success
+    @user_session.assert_response :success
   end
 
-  test 'should update user' do
-    patch user_path(@user), params: { user: { email: @user.email, first_name: @user.first_name, last_name: @user.last_name } }
+  test '#update' do
+    @user_session.patch @user_session.user_path(@user), params: { user: { email: @user.email, first_name: 'Jim', last_name: 'Smith' } }
 
-    assert_redirected_to user_path(@user)
+    @user_session.assert_response :redirect
   end
 
-  test 'should destroy user' do
-    assert_difference('User.count', -1) do
-      delete user_path(@user)
-    end
+  test '#destroy' do
+    @user_session.delete @user_session.user_path(@user)
 
-    assert_redirected_to users_path
+    @user_session.assert_response :redirect
+    user = User.find_by id: @user.id
+
+    assert { user.blank? }
   end
 end

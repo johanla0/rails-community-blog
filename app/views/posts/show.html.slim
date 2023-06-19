@@ -5,14 +5,21 @@ nav aria-label='breadcrumb'
     li.breadcrumb-item.active aria-current='page'
       = @post.title
 
-.my-4 id="#{dom_id @post}"
-  h1.mb-3= @post.title
-  p=< render partial: 'posts/shared/user_badge', locals: { post: @post }
-  p.date= l(@post.created_at, format: :short)
-  p=< @post.body
-
-.mb-3
-  => link_to t('edit'), edit_post_path(@post)
-  '|
-
-  = link_to t('destroy'), @post, data: { turbo_method: :delete, turbo_confirm: t('destroy_confirmation') }, class: 'link-danger'
+article.my-4 id ="#{dom_id @post}"
+  .position-relative
+    h1.mb-3 = @post.title
+    .d-flex.position-absolute.top-0.end-0.gap-2
+      - if policy(@post).edit?
+        = link_to edit_post_path(@post), class: 'fs-4' do
+          i.bi.bi-pencil-square
+      - if policy(@post).destroy?
+        = link_to @post, data: { turbo_method: :delete, turbo_confirm: t('destroy_confirmation') }, class: 'fs-4 link-danger'
+          i.bi.bi-trash
+  p = render partial: 'posts/shared/user_badge', locals: { post: @post }
+  p
+    => t('.created_at')
+    = l(@post.created_at, format: :short)
+  p
+    => t('.updated_at')
+    = l(@post.updated_at, format: :short)
+  p = @post.body
