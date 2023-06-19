@@ -9,9 +9,9 @@ c:
 ci-setup:
 	bundle config set --local path 'vendor/bundle'
 	bundle install
-	RAILS_ENV=production bin/rails db:create db:migrate
+	bin/rails db:create db:migrate
 	yarn install --cache-folder .yarn-cache
-	RAILS_ENV=production bin/rails assets:precompile
+	bin/rails assets:precompile
 check: lint test
 db!:
 	bin/rails db:drop:_unsafe db:create db:migrate db:fixtures:load db:seed
