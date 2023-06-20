@@ -38,6 +38,8 @@ Layout/EmptyLinesAroundClassBody:
   Enabled: false
 Style/NumericLiterals:
   Enabled: false
+Rails/SkipsModelValidations:
+  Enabled: false
 Layout/LineLength:
   Max: 180
   Exclude:
