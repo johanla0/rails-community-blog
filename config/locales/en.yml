@@ -45,6 +45,10 @@ en:
     show:
       created_at: 'Created:'
       updated_at: 'Updated:'
+    slug:
+      backend: Backend
+      general: General
+      ux: UX Design
   removed_author: No author
   show: Show
   show_post: Show this post

@@ -14,7 +14,11 @@ ci-setup:
 	bin/rails assets:precompile
 check: lint test
 db!:
-	bin/rails db:drop:_unsafe db:create db:migrate db:fixtures:load db:seed
+	@ make db-reset
+db-reset:
+	RAILS_ENV=development bin/rails db:drop:_unsafe db:create db:migrate db:fixtures:load db:seed
+	sleep 1
+	RAILS_ENV=development bin/rails db:migrate:with_data
 install:
 	bundle install
 lint: lint-code lint-style

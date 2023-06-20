@@ -2,6 +2,8 @@ nav aria-label='breadcrumb'
   ol.breadcrumb
     li.breadcrumb-item
       = link_to t('all_posts'), root_path
+    li.breadcrumb-item
+      = link_to t(@post.category.slug, scope: :'posts.slug'), @post.category
     li.breadcrumb-item.active aria-current='page'
       = @post.title
 

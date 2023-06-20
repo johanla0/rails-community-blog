@@ -19,7 +19,7 @@ class UserTest < ActiveSupport::TestCase
   test 'valid user' do
     user = users(:john)
 
-    assert_predicate(user, :valid?)
+    assert { user.valid? }
   end
 
   test 'invalid user without email' do
@@ -29,7 +29,7 @@ class UserTest < ActiveSupport::TestCase
       password: 'password'
     )
 
-    assert_not_empty user.errors[:email]
+    assert { user.errors[:email].any? }
   end
 
   test 'invalid user without password' do
@@ -39,6 +39,6 @@ class UserTest < ActiveSupport::TestCase
       email: 'john@test.com'
     )
 
-    assert_not_empty user.errors[:password]
+    assert { user.errors[:password].any? }
   end
 end

@@ -4,6 +4,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @post = posts(:one)
     @user = users(:john)
+    @category = categories(:one)
 
     @user_session = sign_in @user
   end
@@ -24,7 +25,8 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     attrs = {
       body: @post.body,
       title: @post.title,
-      user_id: @user.id
+      user_id: @user.id,
+      category_id: @category.id
     }
 
     @user_session.post @user_session.posts_path, params: { post: attrs }

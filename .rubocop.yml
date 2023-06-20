@@ -36,6 +36,8 @@ Style/NegatedIf:
   Enabled: false
 Layout/EmptyLinesAroundClassBody:
   Enabled: false
+Style/NumericLiterals:
+  Enabled: false
 Layout/LineLength:
   Max: 180
   Exclude:

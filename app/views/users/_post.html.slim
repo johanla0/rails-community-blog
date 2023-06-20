@@ -1,6 +1,12 @@
 article.card.p-3.mb-3 id="#{dom_id post}"
   .position-relative
-    h5.mb-3 = link_to post.title, post
+    .d-flex.align-items-baseline
+      h5
+        = link_to post.title, post
+      .ms-2.small.fst-italic
+        = link_to post.category, class: 'text-decoration-none' do
+          |#
+          = t(post.category.slug, scope: :'posts.slug')
     .d-flex.position-absolute.top-0.end-0.gap-2
       - if policy(post).edit?
         = link_to edit_post_path(post), class: 'fs-6' do
