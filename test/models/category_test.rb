@@ -22,7 +22,7 @@ class CategoryTest < ActiveSupport::TestCase
 
   test 'invalid duplicated category' do
     category = Category.create(
-      slug: :basic,
+      slug: :general,
       name: 'New'
     )
 
