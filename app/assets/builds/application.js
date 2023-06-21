@@ -11944,7 +11944,6 @@
   // app/javascript/controllers/toast_controller.js
   var toast_controller_default = class extends Controller {
     connect() {
-      console.log("connected");
       const toast = new Toast(this.element);
       toast.show();
     }
@@ -11952,9 +11951,6 @@
 
   // app/javascript/controllers/index.js
   application.register("toast", toast_controller_default);
-
-  // app/javascript/application.js
-  console.log("js");
 })();
 /*! Bundled license information:
 

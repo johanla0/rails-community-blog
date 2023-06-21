@@ -10,3 +10,7 @@ en:
         create: User has been published
         destroy: User has been deleted
         update: User has been updated
+    error:
+      likes:
+        create: You have already liked this post
+        destroy: You have not liked this post

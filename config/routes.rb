@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   root 'posts#index'
 
   resources :users, except: %i[index new]
-  resources :posts, except: :index
+  resources :posts, except: :index do
+    resources :likes, only: %i[create destroy]
+  end
   resources :categories, only: :show
 end

@@ -15,9 +15,14 @@ class Post < ApplicationRecord
 
   belongs_to :user
   belongs_to :category
+  has_many :likes, dependent: :destroy
 
   validates :title, presence: true
   validates :body, length: { minimum: 10 }
 
   include PostRepository
+
+  def liked_by?(user)
+    Post.liked_by(user).include? self
+  end
 end

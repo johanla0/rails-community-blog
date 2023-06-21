@@ -12,6 +12,12 @@ class PostPolicy < ApplicationPolicy
   alias update? edit?
   alias destroy? edit?
 
+  def like?
+    user.present?
+  end
+
+  alias unlike? like?
+
   private
 
   def owner?

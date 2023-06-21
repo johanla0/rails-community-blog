@@ -12,10 +12,12 @@ article.card.p-3.mb-3 id="#{dom_id post}"
         = link_to edit_post_path(post), class: 'fs-6' do
           i.bi.bi-pencil-square
       - if policy(post).destroy?
-        = link_to post, data: { turbo_method: :delete, turbo_confirm: t('destroy_confirmation') }, class: 'fs-6 link-danger'
+        = link_to post, data: { turbo_method: :delete, turbo_confirm: t('destroy_confirmation') }, class: 'fs-6 link-secondary'
           i.bi.bi-trash
     p
       = post.body.truncate(150)
     .d-flex.gap-2
-      == render partial: 'posts/shared/time_to_read', locals: { post: }
-      == render partial: 'posts/shared/date', locals: { date: post.updated_at }
+      = render partial: 'posts/shared/date_badge', locals: { date: post.created_at, text_label: t('created_at') }
+      = render partial: 'posts/shared/date_badge', locals: { date: post.updated_at, text_label: t('updated_at') }
+      = render partial: 'posts/shared/time_to_read_badge', locals: { post: }
+      = render partial: 'posts/shared/like_badge', locals: { post: }

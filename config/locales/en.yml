@@ -32,19 +32,20 @@ en:
   all_posts: All posts
   back: Back
   back_to_posts: Back to posts
+  created_at: 'Created:'
   destroy: Delete
   destroy_confirmation: Are you sure?
   edit: Edit
   hello: Hello, %{name}!
+  likes:
+    one: 1 like
+    other: '%{count} likes'
   log_out: Log out
   my_profile: My profile
   new_post: New post
   posts:
     edit:
       edit: Editing post
-    show:
-      created_at: 'Created:'
-      updated_at: 'Updated:'
     slug:
       backend: Backend
       general: General
@@ -58,6 +59,7 @@ en:
     one: 1 minute
     other: '%{count} minutes'
   title: Community blog
+  updated_at: 'Updated:'
   users:
     new:
       edit_user: Edit user
