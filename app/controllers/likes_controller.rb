@@ -27,8 +27,6 @@ class LikesController < ApplicationController
   private
 
   def already_liked?
-    likes_from_user = Like.likes_from(current_user)
-    likes_for_post = Like.likes_for(@post)
-    likes_from_user.merge(likes_for_post).present?
+    @post.liked_by?(current_user)
   end
 end
