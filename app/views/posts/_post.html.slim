@@ -1,0 +1,27 @@
+article.my-4 id ="#{dom_id post}"
+  .position-relative
+    h1.mb-3 = post.title
+    .d-flex.position-absolute.top-0.end-0.gap-2
+      - if user_signed_in?
+        - if post.liked_by?(current_user)
+          = link_to post_like_path(post), data: { turbo_method: :delete }, class: 'fs-4 link-danger'
+            i.bi.bi-heart-fill
+        - else
+          = link_to post_likes_path(post), data: { turbo_method: :post }, class: 'fs-4 link-danger' do
+            i.bi.bi-heart
+      - if policy(post).edit?
+        = link_to edit_post_path(post), class: 'fs-4' do
+          i.bi.bi-pencil-square
+      - if policy(post).destroy?
+        = link_to post, data: { turbo_method: :delete, turbo_confirm: t('destroy_confirmation') }, class: 'fs-4 link-secondary'
+          i.bi.bi-trash
+  .my-2 = render partial: 'posts/shared/user_badge', locals: { post: post }
+  ul.list-unstyled.d-flex.gap-2.my-2
+    li = render partial: 'posts/shared/date_badge', locals: { date: post.created_at, text_label: t('created_at') }
+    li = render partial: 'posts/shared/date_badge', locals: { date: post.updated_at, text_label: t('updated_at') }
+    li = render partial: 'posts/shared/like_badge', locals: { post: post }
+    li
+      = link_to post_path(post, anchor: dom_id(post, :comments)) do
+        = render partial: 'posts/shared/comment_badge', locals: { post: post }
+
+  p = post.body

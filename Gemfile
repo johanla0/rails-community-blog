@@ -3,8 +3,6 @@ git_source(:github) { |_repo| "https://github.com/#{repo}.git" }
 
 ruby '3.1.4'
 
-gem 'data_migrate'
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 7.0.4', '>= 7.0.4.3'
 
@@ -105,3 +103,7 @@ end
 gem 'devise', '~> 4.9'
 
 gem 'pundit', '~> 2.3'
+
+gem 'data_migrate'
+
+gem 'ancestry'

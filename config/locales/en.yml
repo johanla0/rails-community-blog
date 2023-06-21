@@ -32,6 +32,10 @@ en:
   all_posts: All posts
   back: Back
   back_to_posts: Back to posts
+  commentary: Comments
+  comments:
+    one: 1 comment
+    other: '%{count} comments'
   created_at: 'Created:'
   destroy: Delete
   destroy_confirmation: Are you sure?

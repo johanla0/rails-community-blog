@@ -16,8 +16,9 @@ article.card.p-3.mb-3 id="#{dom_id post}"
           i.bi.bi-trash
     p
       = post.body.truncate(150)
-    .d-flex.gap-2
-      = render partial: 'posts/shared/date_badge', locals: { date: post.created_at, text_label: t('created_at') }
-      = render partial: 'posts/shared/date_badge', locals: { date: post.updated_at, text_label: t('updated_at') }
-      = render partial: 'posts/shared/time_to_read_badge', locals: { post: }
-      = render partial: 'posts/shared/like_badge', locals: { post: }
+    ul.list-unstyled.d-flex.gap-2.mb-0
+      li = render partial: 'posts/shared/date_badge', locals: { date: post.created_at, text_label: t('created_at') }
+      li = render partial: 'posts/shared/date_badge', locals: { date: post.updated_at, text_label: t('updated_at') }
+      li = render partial: 'posts/shared/time_to_read_badge', locals: { post: }
+      li = render partial: 'posts/shared/like_badge', locals: { post: }
+      li = render partial: 'posts/shared/comment_badge', locals: { post: }
