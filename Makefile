@@ -1,55 +1,9 @@
-BRANCH := $(shell git rev-parse --abbrev-ref HEAD)
+include *.mk
 
-assets:
-	bin/rails assets:precompile
-branch:
-	git checkout $(ARGS) > /dev/null 2>&1 || git checkout -b $(ARGS)
-c:
-	bin/rails console -- --noautocomplete
-ci-setup:
-	bundle config set --local path 'vendor/bundle'
-	bundle install
-	bin/rails db:create db:migrate
-	yarn install --cache-folder .yarn-cache
-	bin/rails assets:precompile
-check: lint test
-db!:
-	@ make db-reset
-db-reset:
-	RAILS_ENV=development bin/rails db:drop:_unsafe db:create db:migrate db:fixtures:load db:seed
-	sleep 1
-	RAILS_ENV=development bin/rails db:migrate:with_data
-install:
-	bundle install
-lint: lint-code lint-style
-lint-code:
-	bundle exec rubocop
-	bundle exec slim-lint app/views/
-	make lint-eslint
-lint-eslint:
-	npx eslint app/javascript --ext .js
-lint-eslint-fix:
-	npx eslint app/javascript --ext .js --fix
-lint-style:
-	npx stylelint "**/*.scss" "!**/vendor/**"
-linter-code-fix:
-	bundle exec rubocop -A
-pull:
-	git pull origin $(BRANCH)
-push:
-	git push origin $(BRANCH)
-routes:
-	bin/rails routes | grep "$(ARGS)"
-s: server
-server:
-	rails s
-test:
-	bin/rails test $(ARGS)
-uncommit:
-	git reset --soft HEAD^
-upd:
-	git merge master --no-edit
-webpack:
-	yarn build --watch
+.PHONY: app test spec lib docs bin config db tmp
 
-.PHONY: test
+# NOTE: Makes it possible to run "make aaa bbb" instead of "make aaa ARGS=bbb"
+# See https://stackoverflow.com/a/47008498
+ARGS = $(filter-out $@,$(MAKECMDGOALS))
+%:
+	@:
