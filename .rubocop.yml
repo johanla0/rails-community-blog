@@ -38,6 +38,8 @@ Layout/EmptyLinesAroundClassBody:
   Enabled: false
 Style/NumericLiterals:
   Enabled: false
+Style/NegatedIfElseCondition:
+  Enabled: false
 Rails/SkipsModelValidations:
   Enabled: false
 Layout/LineLength:
