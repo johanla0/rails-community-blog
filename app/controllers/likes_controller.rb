@@ -4,7 +4,7 @@ class LikesController < ApplicationController
     authorize @post, :like?
 
     if already_liked?
-      flash[:notice] = "You can't like more than once"
+      flash[:notice] = I18n.t(".flash.error.#{controller_name}.#{params[:action]}")
     else
       @post.likes.create(user_id: current_user.id)
     end
@@ -16,7 +16,7 @@ class LikesController < ApplicationController
     authorize @post, :unlike?
 
     if !already_liked?
-      flash[:notice] = "Cannot unlike"
+      flash[:notice] = I18n.t(".flash.error.#{controller_name}.#{params[:action]}")
     else
       like = Like.likes_for(@post).find_by user_id: current_user.id
       like.destroy

@@ -42,6 +42,8 @@ Style/NegatedIfElseCondition:
   Enabled: false
 Rails/SkipsModelValidations:
   Enabled: false
+Minitest/MultipleAssertions:
+  Enabled: false
 Layout/LineLength:
   Max: 180
   Exclude:
