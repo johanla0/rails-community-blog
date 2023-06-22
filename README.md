@@ -4,3 +4,20 @@
 
 ### App is located here
 https://rails-project-64-production-c6e0.up.railway.app
+
+### Instructions
+#### Install locally (no docker containers currently)
+
+`make install`
+
+#### Start a new branch
+
+`make branch feature_name`
+
+#### Check styles (slim, js, scss) and run tests (models, controllers) before pushing
+
+`make check`
+
+#### Push
+
+`make push`
