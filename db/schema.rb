@@ -12,11 +12,10 @@
 
 ActiveRecord::Schema[7.0].define(version: 2023_06_22_112843) do
   create_table "categories", force: :cascade do |t|
-    t.string "slug", null: false
-    t.string "name", null: false
+    t.string "slug"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["slug"], name: "index_categories_on_slug", unique: true
   end
 
   create_table "data_migrations", primary_key: "version", id: :string, force: :cascade do |t|
