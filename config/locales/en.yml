@@ -48,12 +48,24 @@ en:
   my_profile: My profile
   new_post: New post
   posts:
+    comments:
+      edit:
+        edit: Editing comment
+      new:
+        new: New comment
+      shared:
+        comment:
+          respond: Respond
+      respond:
+        responding_to: Responding to
     edit:
       edit: Editing post
     slug:
       backend: Backend
       general: General
       ux: UX Design
+    new:
+      new_post: New post
   removed_author: No author
   show: Show
   show_post: Show this post

@@ -22,5 +22,5 @@ class User < ApplicationRecord
 
   has_many :posts, dependent: :nullify
   has_many :likes, dependent: :destroy
-  has_many :post_comments, dependent: :nullify
+  has_many :post_comments, dependent: :destroy
 end

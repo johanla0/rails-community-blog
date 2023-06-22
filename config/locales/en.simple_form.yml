@@ -10,6 +10,8 @@ en:
         body: Content
         password: New password
         password_confirmation: Confirm your new password
+      post_comment:
+        content: Text
     'no': 'No'
     placeholders:
       defaults:
@@ -17,6 +19,8 @@ en:
         password: Enter password
         password_confirmation: Enter confirmation
         title: Enter title
+      post_comment:
+        content: Enter comment
     required:
       mark: '*'
       text: required

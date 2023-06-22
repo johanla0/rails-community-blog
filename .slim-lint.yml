@@ -1,5 +1,5 @@
 linters:
-  RedundantDiv:
-    enabled: false
   LineLength:
     enabled: false
+  RuboCop:
+    enabled: true

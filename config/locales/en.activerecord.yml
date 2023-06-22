@@ -3,6 +3,7 @@ en:
   activerecord:
     models:
       post: post
+      post_comment: comment
   attributes:
     body: Text
   errors:
@@ -11,4 +12,6 @@ en:
   helpers:
     submit:
       post:
+        create: Publish %{model}
+      post_comment:
         create: Publish %{model}
