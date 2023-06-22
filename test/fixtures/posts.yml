@@ -14,17 +14,17 @@
 one:
   title: <%= Faker::Book.title %>
   body: <%= Faker::Lorem.paragraph_by_chars(number: 5000, supplemental: false) %>
-  creator: john
+  user: john
   category: one
 
 two:
   title: <%= Faker::Book.title %>
   body: <%= Faker::Lorem.paragraph_by_chars(number: 10_000, supplemental: false) %>
-  creator: jane
+  user: jane
   category: one
 
 three:
   title: <%= Faker::Book.title %>
   body: <%= Faker::Lorem.paragraph_by_chars(number: 20_000, supplemental: false) %>
-  creator: jane
+  user: jane
   category: two
