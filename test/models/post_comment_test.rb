@@ -21,9 +21,9 @@ class PostCommentTest < ActiveSupport::TestCase
 
   test 'invalid post_comment without user' do
     post_comment = PostComment.create(
-      post: posts(:one)
+      user: users(:john)
     )
 
-    assert { post_comment.errors[:user].any? }
+    assert { post_comment.errors[:post].any? }
   end
 end

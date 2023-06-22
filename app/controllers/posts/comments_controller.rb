@@ -58,7 +58,7 @@ class Posts::CommentsController < Posts::ApplicationController
         )
       ], status: :ok
     else
-      render :edit, status: :unprocessable_entity
+      redirect_back fallback_location: post_path(@post), status: :unprocessable_entity
     end
   end
 

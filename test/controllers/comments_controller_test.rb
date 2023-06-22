@@ -38,7 +38,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
   test '#update' do
     @user_session.patch @user_session.post_comment_path(id: @post_comment.id, post_id: @post.id), params: { post_comment: { content: 'aaa' } }
 
-    @user_session.assert_response :redirect
+    @user_session.assert_response :success
   end
 
   test '#destroy' do
