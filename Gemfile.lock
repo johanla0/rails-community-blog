@@ -81,8 +81,9 @@ GEM
     crass (1.0.6)
     cssbundling-rails (1.2.0)
       railties (>= 6.0.0)
-    data_migrate (1.2.0)
-      rails (>= 3.0.0)
+    data_migrate (10.0.3.rc)
+      activerecord (>= 6.0)
+      railties (>= 6.0)
     date (3.3.3)
     debug (1.8.0)
       irb (>= 1.5.0)
@@ -283,7 +284,7 @@ DEPENDENCIES
   annotate (~> 3.2)
   bootsnap
   cssbundling-rails
-  data_migrate (~> 1.2)
+  data_migrate (= 10.0.3.rc)
   debug
   devise (~> 4.9)
   faker

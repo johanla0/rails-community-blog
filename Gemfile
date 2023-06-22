@@ -104,6 +104,6 @@ gem 'devise', '~> 4.9'
 
 gem 'pundit', '~> 2.3'
 
-gem 'data_migrate', '~> 1.2'
+gem 'data_migrate', '10.0.3.rc'
 
 gem 'ancestry'
