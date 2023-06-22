@@ -34,7 +34,7 @@ class Posts::CommentsController < Posts::ApplicationController
       ], status: :ok
     else
       flash[:error] = I18n.t(".flash.error.#{controller_name}.#{params[:action]}")
-      redirect_back fallback_location: post_path(post), status: :unprocessable_entity
+      redirect_back fallback_location: post_path(@post), status: :unprocessable_entity
     end
   end
 
@@ -43,7 +43,20 @@ class Posts::CommentsController < Posts::ApplicationController
     authorize comment
 
     if comment.update(comment_params)
-      redirect_to post_path(@post), notice: I18n.t(".flash.success.#{controller_name}.#{params[:action]}")
+      # FIXME: flash is not shown
+      flash.now[:success] = I18n.t(".flash.success.#{controller_name}.#{params[:action]}")
+      render turbo_stream: [
+        turbo_stream.replace(
+          helpers.dom_id(@post, :comments),
+          partial: 'posts/comments',
+          locals: { comment:, comments: PostComment.root_comments_for(@post), post: @post }
+        ),
+        turbo_stream.replace(
+          'form',
+          partial: 'posts/comments/shared/form',
+          locals: { comment: PostComment.new, url: post_comments_path(@post), turbo_method: :post }
+        )
+      ], status: :ok
     else
       render :edit, status: :unprocessable_entity
     end
