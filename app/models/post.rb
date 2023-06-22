@@ -21,7 +21,11 @@ class Post < ApplicationRecord
 
   belongs_to :category
   has_many :post_likes, dependent: :destroy
+  alias_attribute :likes, :post_likes
+
   has_many :post_comments, dependent: :destroy
+  alias_attribute :comments, :post_comments
+
 
   validates :title, presence: true
   validates :body, length: { minimum: 10 }

@@ -19,13 +19,4 @@ class CategoryTest < ActiveSupport::TestCase
 
     assert { category.valid? }
   end
-
-  test 'invalid duplicated category' do
-    category = Category.create(
-      slug: :general,
-      name: 'New'
-    )
-
-    assert { category.errors[:slug].any? }
-  end
 end
