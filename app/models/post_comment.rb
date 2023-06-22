@@ -11,6 +11,8 @@
 #  ancestry   :string
 #
 class PostComment < ApplicationRecord
+  include PostCommentPresenter
+
   belongs_to :post
   belongs_to :user, optional: true
 

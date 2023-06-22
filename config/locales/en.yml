@@ -66,7 +66,7 @@ en:
       ux: UX Design
     new:
       new_post: New post
-  removed_author: No author
+  unknown_author: No author
   show: Show
   show_post: Show this post
   sign_in: Sign in

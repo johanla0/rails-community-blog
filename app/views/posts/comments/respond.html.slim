@@ -4,7 +4,7 @@
       .ms-2
         => t('.responding_to')
         = link_to post_path(@post, anchor: dom_id(@parent_comment)), data: { action: 'click->scroll-to-parent#scroll' } do
-          = @parent_comment.user.name
+          = @parent_comment.author
       div
         = link_to post_path(@post, anchor: dom_id(@post, :comments)), data: { turbo_frame: '_top' }, class: 'fs-5 link-secondary' do
           i.bi.bi-x
