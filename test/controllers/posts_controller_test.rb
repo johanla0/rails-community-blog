@@ -38,6 +38,22 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert { post.present? }
   end
 
+  test '#create without creator' do
+    attrs = {
+      body: @post.body,
+      title: @post.title,
+      category_id: @category.id
+    }
+
+    @user_session.post @user_session.posts_path, params: { post: attrs }
+
+    @user_session.assert_response :redirect
+
+    post = Post.find_by(attrs)
+
+    assert { post.present? }
+  end
+
   test '#show' do
     get post_path(@post)
 

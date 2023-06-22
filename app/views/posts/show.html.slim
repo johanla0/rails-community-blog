@@ -9,10 +9,3 @@ nav aria-label='breadcrumb'
 
 = render partial: 'post', object: @post
 = render partial: 'comments', locals: { comment: @comment, comments: @comments, post: @post }
-
-/ = turbo_frame_tag dom_id(@post, :comments) do
-/   section.my-4 data-controller = 'scroll-to-parent'
-/     h2 id='comments' = t('commentary')
-/     = render partial: 'posts/comments/shared/comment', collection: @comments
-/     = turbo_frame_tag dom_id(@post, :response) do
-/       = render partial: 'posts/comments/shared/form', locals: { comment: @comment, url: post_comments_path(@post), turbo_method: :post }
