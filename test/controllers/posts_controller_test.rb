@@ -25,7 +25,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     attrs = {
       body: @post.body,
       title: @post.title,
-      user_id: @user.id,
+      creator_id: @user.id,
       category_id: @category.id
     }
 
