@@ -1,17 +1,14 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
 
-  # GET /users/1 or /users/1.json
   def show
     @posts = @user.posts
   end
 
-  # GET /users/1/edit
   def edit
     authorize current_user
   end
 
-  # POST /users
   def create
     @user = User.new(user_params)
 
@@ -22,7 +19,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /users/1
   def update
     authorize current_user
 
@@ -33,7 +29,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE /users/1
   def destroy
     authorize current_user
 

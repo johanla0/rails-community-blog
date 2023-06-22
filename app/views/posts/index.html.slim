@@ -1,5 +1,4 @@
 h1 = t('title')
 
 #posts
-  - @posts.each do |post|
-    = render partial: 'posts/shared/post', object: post
+  = render partial: 'posts/shared/post', collection: @posts

@@ -6,5 +6,4 @@ nav aria-label='breadcrumb'
       = t(@category.slug, scope: :'posts.slug')
 
 #posts
-  - @posts.each do |post|
-    = render partial: 'posts/shared/post', object: post
+  = render partial: 'posts/shared/post', collection: @posts

@@ -1,26 +1,24 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
 
-  # GET /posts or /posts.json
   def index
     @posts = Post.all
   end
 
-  # GET /posts/1 or /posts/1.json
-  def show; end
+  def show
+    @comments = PostComment.root_comments_for(@post)
+    @comment = PostComment.new
+  end
 
-  # GET /posts/new
   def new
     @post = Post.new
     authorize @post
   end
 
-  # GET /posts/1/edit
   def edit
     authorize @post
   end
 
-  # POST /posts or /posts.json
   def create
     @post = Post.new(post_params)
     authorize @post
@@ -32,7 +30,6 @@ class PostsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /posts/1 or /posts/1.json
   def update
     if @post.update(post_params)
       redirect_to post_path(@post), notice: I18n.t(".flash.success.#{controller_name}.#{params[:action]}")
@@ -41,7 +38,6 @@ class PostsController < ApplicationController
     end
   end
 
-  # DELETE /posts/1 or /posts/1.json
   def destroy
     @post.destroy
 

@@ -1,0 +1,6 @@
+= turbo_frame_tag dom_id(@comment) do
+  .card.my-3
+    .card-header.d-flex.justify-content-between.bg-secondary-subtle
+      .ms-2 = t('.edit')
+    .ps-3.pt-3.pb-2
+      = render partial: 'posts/comments/shared/form', locals: { comment: @comment, url: post_comment_path(@comment.post), turbo_method: :patch }

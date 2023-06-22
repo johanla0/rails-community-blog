@@ -19725,3 +19725,7 @@ h6 a,
 .h6 a {
   text-decoration: none;
 }
+
+.toast {
+  z-index: 100;
+}

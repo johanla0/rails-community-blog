@@ -1,0 +1,34 @@
+# == Schema Information
+#
+# Table name: post_comments
+#
+#  id         :integer          not null, primary key
+#  content    :text
+#  post_id    :integer          not null
+#  user_id    :integer          not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  ancestry   :string
+#
+
+one:
+  content: 'I am just a comment'
+  post: one
+  user: john
+
+root:
+  content: 'I am a root comment'
+  post: one
+  user: john
+
+nested:
+  content: 'I am a nested comment'
+  post: one
+  user: jane
+  ancestry: <%= ActiveRecord::FixtureSet.identify(:root) %>
+
+deep_nested:
+  content: 'I am a deep nested comment'
+  post: one
+  user: john
+  ancestry: <%= [ActiveRecord::FixtureSet.identify(:root), ActiveRecord::FixtureSet.identify(:nested)].join('/') %>

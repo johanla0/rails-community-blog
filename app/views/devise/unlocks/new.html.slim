@@ -4,12 +4,12 @@ h2 = t('.resend_unlock_instructions')
   = f.error_notification
   = f.full_error :unlock_token
 
-  div.form-inputs
+  .form-inputs
     = f.input :email,
               required: true,
               autofocus: true,
               input_html: { autocomplete: 'email' }
-  div.form-actions
+  .form-actions
     = f.button :submit, t('.resend_unlock_instructions')
 
 = render 'devise/shared/links'

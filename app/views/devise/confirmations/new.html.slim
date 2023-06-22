@@ -4,14 +4,14 @@ h2 = t('.resend_instructions')
   = f.error_notification
   = f.full_error :confirmation_token
 
-  div.form-inputs
+  .form-inputs
     = f.input :email,
               required: true,
               autofocus: true,
               value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email),
               input_html: { autocomplete: 'email' }
 
-  div.form-actions
+  .form-actions
     = f.button :submit, t('.resend_instructions')
 
 = render 'devise/shared/links'

@@ -4,6 +4,10 @@
 
 import { application } from './application';
 
+import ScrollToParentController from './scroll_to_parent_controller';
+
 import ToastController from './toast_controller';
+
+application.register('scroll-to-parent', ScrollToParentController);
 
 application.register('toast', ToastController);

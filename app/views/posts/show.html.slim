@@ -7,27 +7,12 @@ nav aria-label='breadcrumb'
     li.breadcrumb-item.active aria-current='page'
       = @post.title
 
-article.my-4 id ="#{dom_id @post}"
-  .position-relative
-    h1.mb-3 = @post.title
-    .d-flex.position-absolute.top-0.end-0.gap-2
-      - if user_signed_in?
-        - if @post.liked_by?(current_user)
-          = link_to post_like_path(@post), data: { turbo_method: :delete }, class: 'fs-4 link-danger'
-            i.bi.bi-heart-fill
-        - else
-          = link_to post_likes_path(@post), data: { turbo_method: :post }, class: 'fs-4 link-danger' do
-            i.bi.bi-heart
-      - if policy(@post).edit?
-        = link_to edit_post_path(@post), class: 'fs-4' do
-          i.bi.bi-pencil-square
-      - if policy(@post).destroy?
-        = link_to @post, data: { turbo_method: :delete, turbo_confirm: t('destroy_confirmation') }, class: 'fs-4 link-secondary'
-          i.bi.bi-trash
-  .my-2 = render partial: 'posts/shared/user_badge', locals: { post: @post }
-  .d-flex.gap-2.my-2
-    = render partial: 'posts/shared/date_badge', locals: { date: @post.created_at, text_label: t('created_at') }
-    = render partial: 'posts/shared/date_badge', locals: { date: @post.updated_at, text_label: t('updated_at') }
-    = render partial: 'posts/shared/like_badge', locals: { post: @post }
+= render partial: 'post', object: @post
+= render partial: 'comments', locals: { comment: @comment, comments: @comments, post: @post }
 
-  p = @post.body
+/ = turbo_frame_tag dom_id(@post, :comments) do
+/   section.my-4 data-controller = 'scroll-to-parent'
+/     h2 id='comments' = t('commentary')
+/     = render partial: 'posts/comments/shared/comment', collection: @comments
+/     = turbo_frame_tag dom_id(@post, :response) do
+/       = render partial: 'posts/comments/shared/form', locals: { comment: @comment, url: post_comments_path(@post), turbo_method: :post }

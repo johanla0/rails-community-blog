@@ -1,4 +1,4 @@
-= simple_form_for(@post) do |f|
+= simple_form_for post do |f|
   = f.input :title
   = f.input :body, as: :text, input_html: { rows: 7 }
   = f.association :category, include_blank: false

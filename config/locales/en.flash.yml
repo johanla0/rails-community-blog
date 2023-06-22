@@ -1,7 +1,19 @@
 ---
 en:
   flash:
+    error:
+      comments:
+        create: Cannot publish the comment
+        destroy: Cannot delete the comment
+        update: Cannot update the comment
+      likes:
+        create: You have already liked this post
+        destroy: You have not liked this post
     success:
+      comments:
+        create: Comment has been published
+        destroy: Comment has been deleted
+        update: Comment has been updated
       posts:
         create: Post has been published
         destroy: Post has been deleted
@@ -10,7 +22,3 @@ en:
         create: User has been published
         destroy: User has been deleted
         update: User has been updated
-    error:
-      likes:
-        create: You have already liked this post
-        destroy: You have not liked this post
