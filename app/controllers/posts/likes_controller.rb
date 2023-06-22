@@ -1,4 +1,4 @@
-class LikesController < ApplicationController
+class Posts::LikesController < Posts::ApplicationController
   def create
     @post = Post.find(params[:post_id])
     authorize @post, :like?
@@ -6,7 +6,7 @@ class LikesController < ApplicationController
     if already_liked?
       flash[:notice] = I18n.t(".flash.error.#{controller_name}.#{params[:action]}")
     else
-      @post.likes.create(user_id: current_user.id)
+      @post.post_likes.create(user_id: current_user.id)
     end
     redirect_to post_path(@post)
   end
@@ -18,7 +18,7 @@ class LikesController < ApplicationController
     if !already_liked?
       flash[:notice] = I18n.t(".flash.error.#{controller_name}.#{params[:action]}")
     else
-      like = Like.likes_for(@post).find_by user_id: current_user.id
+      like = PostLike.likes_for(@post).find_by user_id: current_user.id
       like.destroy
     end
     redirect_to post_path(@post)

@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: likes
+# Table name: post_likes
 #
 #  id         :integer          not null, primary key
 #  post_id    :integer          not null
@@ -10,15 +10,15 @@
 #
 require 'test_helper'
 
-class LikeTest < ActiveSupport::TestCase
+class PostLikeTest < ActiveSupport::TestCase
   test 'valid like' do
-    like = likes(:one)
+    like = post_likes(:one)
 
     assert { like.valid? }
   end
 
   test 'invalid like without user' do
-    like = Like.create(
+    like = PostLike.create(
       post: posts(:one)
     )
 
@@ -26,7 +26,7 @@ class LikeTest < ActiveSupport::TestCase
   end
 
   test 'invalid like without post' do
-    like = Like.create(
+    like = PostLike.create(
       user: users(:john)
     )
 

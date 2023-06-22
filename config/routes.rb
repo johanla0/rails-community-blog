@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :users, except: %i[index new]
   resources :posts, except: :index do
-    resources :likes, only: %i[create destroy]
+    resources :likes, only: %i[create destroy], module: :posts
     resources :comments, except: %i[index new show], module: :posts do
       get :respond
     end

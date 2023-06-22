@@ -7,4 +7,8 @@ module PostPresenter
   def author
     user.name.presence || I18n.t('removed_author')
   end
+
+  def likes_count
+    post_likes.count
+  end
 end

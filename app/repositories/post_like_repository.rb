@@ -1,4 +1,4 @@
-module LikeRepository
+module PostLikeRepository
   extend ActiveSupport::Concern
 
   included do

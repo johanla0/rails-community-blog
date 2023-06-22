@@ -13,7 +13,7 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
 
     @user_session.assert_response :redirect
 
-    like = Like.last
+    like = PostLike.last
 
     assert { like.present? }
     assert { like.user == @user }
@@ -21,15 +21,15 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test '#destroy' do
-    like = likes(:one)
-    likes_before = @post.likes.count
+    like = post_likes(:one)
+    likes_before = @post.post_likes.count
 
     @user_session.delete @user_session.post_like_path(@post.id, id: like.id)
 
     @user_session.assert_response :redirect
 
     @post.reload
-    likes_after = @post.likes.count
+    likes_after = @post.post_likes.count
 
     assert { likes_after < likes_before }
   end
