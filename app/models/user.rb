@@ -20,7 +20,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   include UserPresenter
 
-  has_many :posts, dependent: :nullify
+  # has_many :posts, dependent: :nullify, foreign_key: 'creator_id', inverse_of: :user
+  has_many :posts, dependent: :nullify, foreign_key: 'creator_id'
   has_many :post_likes, dependent: :destroy
   has_many :post_comments, dependent: :destroy
 end
