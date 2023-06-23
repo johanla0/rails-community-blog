@@ -16,7 +16,7 @@ class Post < ApplicationRecord
   belongs_to :creator, class_name: 'User', optional: true
   alias_attribute :user, :creator
 
-  belongs_to :category
+  belongs_to :category, optional: true
   has_many :post_likes, dependent: :destroy
   alias_attribute :likes, :post_likes
 
