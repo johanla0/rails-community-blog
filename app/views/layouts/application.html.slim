@@ -11,6 +11,7 @@ html
 
   body
     = render partial: 'layouts/shared/header'
-    = render partial: 'layouts/shared/flash'
+    = turbo_frame_tag id="flash"
+      = render partial: 'layouts/shared/flash'
     main
       == yield
