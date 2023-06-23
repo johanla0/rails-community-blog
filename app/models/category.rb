@@ -12,6 +12,4 @@
 #
 class Category < ApplicationRecord
   has_many :posts, dependent: :nullify
-
-  validates :slug, presence: true, uniqueness: true
 end
