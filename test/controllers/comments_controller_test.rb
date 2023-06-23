@@ -28,7 +28,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     }
     @user_session.post @user_session.post_comments_path(@post), params: { post_comment: attrs }
 
-    @user_session.assert_response :ok
+    @user_session.assert_response :redirect
 
     post_comment = PostComment.find_by(attrs)
 
@@ -38,7 +38,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
   test '#update' do
     @user_session.patch @user_session.post_comment_path(id: @post_comment.id, post_id: @post.id), params: { post_comment: { content: 'aaa' } }
 
-    @user_session.assert_response :success
+    @user_session.assert_response :redirect
   end
 
   test '#destroy' do

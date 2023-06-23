@@ -31,7 +31,7 @@ class Posts::CommentsController < Posts::ApplicationController
           partial: 'posts/comments/shared/form',
           locals: { comment: PostComment.new, url: post_comments_path(@post), turbo_method: :post }
         )
-      ], status: :ok
+      ], status: :found
     else
       flash[:error] = I18n.t(".flash.error.#{controller_name}.#{params[:action]}")
       redirect_back fallback_location: post_path(@post), status: :unprocessable_entity
@@ -56,7 +56,7 @@ class Posts::CommentsController < Posts::ApplicationController
           partial: 'posts/comments/shared/form',
           locals: { comment: PostComment.new, url: post_comments_path(@post), turbo_method: :post }
         )
-      ], status: :ok
+      ], status: :found
     else
       redirect_back fallback_location: post_path(@post), status: :unprocessable_entity
     end
