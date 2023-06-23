@@ -8,4 +8,5 @@ nav aria-label='breadcrumb'
       = @post.title
 
 = render partial: 'post', object: @post
-= render partial: 'comments', locals: { comment: @comment, comments: @comments, post: @post }
+= render partial: 'comments', \
+         locals: { comment: @comment, comments: @comments, post: @post }

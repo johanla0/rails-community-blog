@@ -1,6 +1,9 @@
 h2 = t('.resend_instructions')
 
-= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+= simple_form_for resource, \
+                  as: resource_name, \
+                  url: confirmation_path(resource_name), \
+                  html: { method: :post } do |f|
   = f.error_notification
   = f.full_error :confirmation_token
 
@@ -8,7 +11,10 @@ h2 = t('.resend_instructions')
     = f.input :email,
               required: true,
               autofocus: true,
-              value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email),
+              value: ( \
+                resource.pending_reconfirmation? ? \
+                  resource.unconfirmed_email : resource.email \
+              ),
               input_html: { autocomplete: 'email' }
 
   .form-actions

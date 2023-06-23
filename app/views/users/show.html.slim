@@ -15,7 +15,12 @@ div id="#{dom_id(@user)}"
               = link_to edit_user_path(@user), class: 'fs-4' do
                 i.bi.bi-pencil-square
             - if policy(@user).destroy?
-              = link_to @user, data: { turbo_method: :delete, turbo_confirm: t('destroy_confirmation') }, class: 'fs-4 link-secondary'
+              = link_to @user, \
+                        data: { \
+                          turbo_method: :delete, \
+                          turbo_confirm: t('destroy_confirmation') \
+                        }, \
+                        class: 'fs-4 link-secondary' do
                 i.bi.bi-trash
           .d-flex.flex-column.align-items-center.text-center
             i.bi.bi-person-circle.display-1.mb-3

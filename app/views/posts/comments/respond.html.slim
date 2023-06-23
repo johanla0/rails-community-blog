@@ -1,12 +1,26 @@
 = turbo_frame_tag 'respond' do
   .card.my-3
-    .card-header.d-flex.justify-content-between.align-items-center.bg-secondary-subtle
+    .card-header *{ class: %w[d-flex justify-content-between \
+      align-items-center bg-secondary-subtle] }
       .ms-2
         => t('.responding_to')
-        = link_to post_path(@post, anchor: dom_id(@parent_comment)), data: { action: 'click->scroll-to-parent#scroll' } do
+        = link_to post_path(@post, anchor: dom_id(@parent_comment)), \
+                  data: { \
+                    action: 'click->scroll-to-parent#scroll' \
+                  } do
           = @parent_comment.author
       div
-        = link_to post_path(@post, anchor: dom_id(@post, :comments)), data: { turbo_frame: '_top' }, class: 'fs-5 link-secondary' do
+        = link_to post_path(@post, anchor: dom_id(@post, :comments)), \
+                  data: { \
+                    turbo_frame: '_top' \
+                  }, \
+                  class: 'fs-5 link- secondary' do
           i.bi.bi-x
     .px-3.pt-3.pb-2
-      = render partial: 'posts/comments/shared/form', locals: { comment: @comment, url: post_comments_path(@post), turbo_method: :post, parent_comment: @parent_comment }
+      = render partial: 'posts/comments/shared/form', \
+               locals: { \
+                 comment: @comment, \
+                 url: post_comments_path(@post), \
+                 turbo_method: :post, \
+                 parent_comment: @parent_comment \
+               }

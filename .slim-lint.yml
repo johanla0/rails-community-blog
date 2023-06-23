@@ -1,5 +1,3 @@
 linters:
-  LineLength:
-    enabled: false
   RuboCop:
-    enabled: true
+    enabled: false

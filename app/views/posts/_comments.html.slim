@@ -3,4 +3,9 @@
     h2 id='comments' = t('commentary')
     = render partial: 'posts/comments/shared/comment', collection: comments
     = turbo_frame_tag 'respond' do
-      = render partial: 'posts/comments/shared/form', locals: { comment:, url: post_comments_path(post), turbo_method: :post }
+      = render partial: 'posts/comments/shared/form', \
+               locals: { \
+                 comment:, \
+                 url: post_comments_path(post), \
+                 turbo_method: :post \
+               }
