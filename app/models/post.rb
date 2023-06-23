@@ -15,7 +15,7 @@
 class Post < ApplicationRecord
   include PostPresenter
 
-  belongs_to :creator, class_name: 'User', optional: true
+  belongs_to :creator, class_name: 'User', optional: true, foreign_key: 'creator_id'
   alias_attribute :user, :creator
 
   belongs_to :category, optional: true

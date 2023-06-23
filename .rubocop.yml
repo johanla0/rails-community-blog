@@ -63,6 +63,9 @@ Metrics/MethodLength:
 Metrics/PerceivedComplexity:
   Max: 20
 
+Rails/RedundantForeignKey:
+  Enabled: false
+
 Rails/DynamicFindBy:
   Enabled: true
 
