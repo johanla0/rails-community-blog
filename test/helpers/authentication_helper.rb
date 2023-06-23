@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module AuthenticationHelper
   def current_user(session)
     User.find_by(id: session.session[:current_user_id])

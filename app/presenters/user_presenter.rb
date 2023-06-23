@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module UserPresenter
   def name
     "#{first_name} #{last_name}"

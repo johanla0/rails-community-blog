@@ -36,8 +36,6 @@ Style/NegatedIf:
   Enabled: false
 Layout/EmptyLinesAroundClassBody:
   Enabled: false
-Style/NumericLiterals:
-  Enabled: false
 Style/NegatedIfElseCondition:
   Enabled: false
 Rails/SkipsModelValidations:
@@ -51,9 +49,6 @@ Layout/LineLength:
   Exclude:
     - 'config/initializers/devise.rb'
     - 'app/views/**/*.jbuilder'
-
-Style/FrozenStringLiteralComment:
-  EnforcedStyle: never
 
 Style/StructInheritance:
   Exclude:

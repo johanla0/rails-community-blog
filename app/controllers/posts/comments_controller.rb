@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Posts::CommentsController < Posts::ApplicationController
   before_action :set_post, only: %i[respond create update destroy]
 

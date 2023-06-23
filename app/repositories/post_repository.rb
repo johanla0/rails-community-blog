@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module PostRepository
   extend ActiveSupport::Concern
 

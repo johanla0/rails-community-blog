@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SetDefaultCategoryForPosts < ActiveRecord::Migration[7.0]
   def up
     category = Category.find_by slug: :general

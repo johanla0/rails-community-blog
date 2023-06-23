@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module PostPresenter
   AVERAGE_READING_RATE = 183.0
   def time_to_read
