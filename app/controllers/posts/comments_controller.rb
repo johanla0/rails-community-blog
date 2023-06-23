@@ -16,7 +16,7 @@ class Posts::CommentsController < Posts::ApplicationController
   end
 
   def create
-    @comment = PostComment.new(comment_params.merge(post_id: params[:post_id]))
+    @comment = PostComment.new(comment_params.merge(post_id: params[:post_id], user_id: current_user.id))
     authorize @comment
 
     if @comment.save
@@ -102,6 +102,6 @@ class Posts::CommentsController < Posts::ApplicationController
   end
 
   def comment_params
-    params.require(:post_comment).permit(:content, :user_id, :parent_id)
+    params.require(:post_comment).permit(:content, :parent_id)
   end
 end

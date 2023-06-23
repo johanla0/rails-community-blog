@@ -24,6 +24,6 @@ class User < ApplicationRecord
   include UserPresenter
 
   has_many :posts, dependent: :nullify, foreign_key: 'creator_id'
-  has_many :post_likes, dependent: :destroy
+  has_many :likes, class_name: 'PostLike', dependent: :destroy
   has_many :post_comments, dependent: :destroy
 end

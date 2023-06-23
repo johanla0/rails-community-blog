@@ -6813,13 +6813,21 @@
         card.classList.remove("border-primary");
       });
     }
-    highlightParentComment(e) {
-      this._removeHighlighting();
+    _highlightParentComment(e) {
       const card = e.currentTarget.closest(".card");
       card.classList.add("border-primary");
     }
+    respond(e) {
+      this._removeHighlighting();
+      this._highlightParentComment(e);
+      this.formTarget.scrollIntoView();
+    }
   };
-  __publicField(scroll_to_parent_controller_default, "targets", ["comment"]);
+  __publicField(scroll_to_parent_controller_default, "targets", [
+    "comment",
+    "form",
+    "textarea"
+  ]);
 
   // node_modules/@popperjs/core/lib/index.js
   var lib_exports = {};

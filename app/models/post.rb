@@ -15,15 +15,12 @@
 class Post < ApplicationRecord
   include PostPresenter
 
-  belongs_to :creator, class_name: 'User', optional: true, foreign_key: 'creator_id'
+  belongs_to :creator, class_name: 'User'
   alias_attribute :user, :creator
 
-  belongs_to :category, optional: true
-  has_many :post_likes, dependent: :destroy
-  alias_attribute :likes, :post_likes
-
-  has_many :post_comments, dependent: :destroy
-  alias_attribute :comments, :post_comments
+  belongs_to :category
+  has_many :likes, class_name: 'PostLike', dependent: :destroy
+  has_many :comments, class_name: 'PostComment', dependent: :destroy
 
   validates :title, presence: true
   validates :body, length: { minimum: 10 }

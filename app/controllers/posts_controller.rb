@@ -22,7 +22,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = Post.new(post_params.merge(creator_id: current_user.id))
     authorize @post
 
     if @post.save
@@ -33,6 +33,8 @@ class PostsController < ApplicationController
   end
 
   def update
+    authorize @post
+
     if @post.update(post_params)
       redirect_to post_path(@post), notice: I18n.t(".flash.success.#{controller_name}.#{params[:action]}")
     else
@@ -41,6 +43,8 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    authorize @post
+
     @post.destroy
 
     redirect_to root_path, notice: I18n.t(".flash.success.#{controller_name}.#{params[:action]}")
@@ -55,6 +59,6 @@ class PostsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def post_params
-    params.require(:post).permit(:title, :body, :creator_id, :category_id)
+    params.require(:post).permit(:title, :body, :category_id)
   end
 end
