@@ -3,6 +3,8 @@ annotate-models:
 ci-setup:
 	bundle install
 	bin/rails db:create db:migrate db:migrate:with_data
+	# NOTE: Remove me later
+	make style!
 	yarn install --cache-folder .yarn-cache
 	bin/rails assets:precompile
 check: lint test
