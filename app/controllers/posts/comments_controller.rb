@@ -16,12 +16,11 @@ class Posts::CommentsController < Posts::ApplicationController
   end
 
   def create
-    @comment = PostComment.new(comment_params.merge(post_id: params[:post_id]))
+    @comment = PostComment.new(comment_params.merge(post_id: params[:post_id], user_id: current_user.id))
     authorize @comment
 
     if @comment.save
-      # FIXME: flash is not shown
-      flash.now[:success] = I18n.t(".flash.success.#{controller_name}.#{params[:action]}")
+      flash[:success] = I18n.t(".flash.success.#{controller_name}.#{params[:action]}")
       render turbo_stream: [
         turbo_stream.replace(
           helpers.dom_id(@post, :comments),
@@ -32,6 +31,10 @@ class Posts::CommentsController < Posts::ApplicationController
           'form',
           partial: 'posts/comments/shared/form',
           locals: { comment: PostComment.new, url: post_comments_path(@post), turbo_method: :post }
+        ),
+        turbo_stream.update(
+          'flash',
+          partial: 'layouts/shared/flash'
         )
       ], status: :found
     else
@@ -45,8 +48,7 @@ class Posts::CommentsController < Posts::ApplicationController
     authorize comment
 
     if comment.update(comment_params)
-      # FIXME: flash is not shown
-      flash.now[:success] = I18n.t(".flash.success.#{controller_name}.#{params[:action]}")
+      flash[:success] = I18n.t(".flash.success.#{controller_name}.#{params[:action]}")
       render turbo_stream: [
         turbo_stream.replace(
           helpers.dom_id(@post, :comments),
@@ -57,6 +59,10 @@ class Posts::CommentsController < Posts::ApplicationController
           'form',
           partial: 'posts/comments/shared/form',
           locals: { comment: PostComment.new, url: post_comments_path(@post), turbo_method: :post }
+        ),
+        turbo_stream.update(
+          'flash',
+          partial: 'layouts/shared/flash'
         )
       ], status: :found
     else
@@ -70,8 +76,7 @@ class Posts::CommentsController < Posts::ApplicationController
 
     comment.destroy
 
-    # FIXME: flash is not shown
-    flash.now[:success] = I18n.t(".flash.success.#{controller_name}.#{params[:action]}")
+    flash[:success] = I18n.t(".flash.success.#{controller_name}.#{params[:action]}")
     render turbo_stream: [
       turbo_stream.replace(
         helpers.dom_id(@post, :comments),
@@ -82,6 +87,10 @@ class Posts::CommentsController < Posts::ApplicationController
         'form',
         partial: 'posts/comments/shared/form',
         locals: { comment: PostComment.new, url: post_comments_path(@post), turbo_method: :post }
+      ),
+      turbo_stream.update(
+        'flash',
+        partial: 'layouts/shared/flash'
       )
     ], status: :ok
   end
@@ -93,6 +102,6 @@ class Posts::CommentsController < Posts::ApplicationController
   end
 
   def comment_params
-    params.require(:post_comment).permit(:content, :user_id, :parent_id)
+    params.require(:post_comment).permit(:content, :parent_id)
   end
 end

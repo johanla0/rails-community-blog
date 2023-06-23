@@ -8,7 +8,7 @@ class Posts::LikesController < Posts::ApplicationController
     if already_liked?
       flash[:notice] = I18n.t(".flash.error.#{controller_name}.#{params[:action]}")
     else
-      @post.post_likes.create(user_id: current_user.id)
+      @post.likes.create(user_id: current_user.id)
     end
     redirect_to post_path(@post)
   end

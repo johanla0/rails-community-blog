@@ -14,7 +14,7 @@ AllCops:
     - 'node_modules/**/*'
     - 'db/migrate/*'
     - 'db/schema.rb'
-    - 'db/data_schema.rb'
+    # - 'db/data_schema.rb'
 
 Rails:
   Enabled: true
@@ -62,9 +62,6 @@ Metrics/MethodLength:
   Max: 120
 Metrics/PerceivedComplexity:
   Max: 20
-
-Rails/RedundantForeignKey:
-  Enabled: false
 
 Rails/DynamicFindBy:
   Enabled: true

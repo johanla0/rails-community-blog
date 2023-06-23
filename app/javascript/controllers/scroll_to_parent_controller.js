@@ -3,7 +3,11 @@
 import { Controller } from '@hotwired/stimulus';
 
 export default class extends Controller {
-  static targets = ['comment'];
+  static targets = [
+    'comment',
+    'form',
+    'textarea',
+  ];
 
   scroll(e) {
     e.preventDefault();
@@ -20,9 +24,14 @@ export default class extends Controller {
     });
   }
 
-  highlightParentComment(e) {
-    this._removeHighlighting();
+  _highlightParentComment(e) {
     const card = e.currentTarget.closest('.card');
     card.classList.add('border-primary');
+  }
+
+  respond(e) {
+    this._removeHighlighting();
+    this._highlightParentComment(e);
+    this.formTarget.scrollIntoView();
   }
 }

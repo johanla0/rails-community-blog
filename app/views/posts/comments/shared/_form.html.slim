@@ -1,9 +1,7 @@
-= turbo_frame_tag 'form' do
+= turbo_frame_tag 'form', data: { scroll_to_parent_target: 'form' } do
   - if user_signed_in?
-    - parent_comment = parent_comment.presence || ''
-    = simple_form_for comment, url:, data: { turbo_method: } do |f|
-      = f.input :content, as: :text, input_html: { rows: 5 }, label: false
-      = f.hidden_field :user_id, value: current_user.id
-      - if parent_comment.present?
-        = f.hidden_field :parent_id, value: parent_comment.id
-      = f.button :submit, class: 'btn-primary'
+    - let local_assigns[:parent_comment].presence do |parent_comment|
+      = simple_form_for comment, url:, data: { turbo_method: } do |f|
+        = f.input :content, as: :text, input_html: { rows: 5 }, label: false
+        = f.hidden_field :parent_id, value: parent_comment&.id
+        = f.button :submit, class: 'btn-primary'
