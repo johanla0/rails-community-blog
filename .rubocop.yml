@@ -14,7 +14,7 @@ AllCops:
     - 'node_modules/**/*'
     - 'db/migrate/*'
     - 'db/schema.rb'
-    - 'db/data_schema.rb'
+    # - 'db/data_schema.rb'
 
 Rails:
   Enabled: true
