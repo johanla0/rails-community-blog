@@ -11,7 +11,7 @@ module AuthenticationHelper
 
   def sign_in(resource)
     open_session do |s|
-      raise "Unknown resource to sign_in #{resource}" if !resource.instance_of?(User)
+      raise "Unknown resource to sign_in #{resource}" unless resource.instance_of?(User)
 
       s.post s.user_session_url, params: {
         user: {

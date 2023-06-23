@@ -30,15 +30,7 @@ Style/ClassAndModuleChildren:
   Enabled: false
 Style/IfUnlessModifier:
   Enabled: false
-Style/Lambda:
-  Enabled: false
-Style/NegatedIf:
-  Enabled: false
 Layout/EmptyLinesAroundClassBody:
-  Enabled: false
-Style/NegatedIfElseCondition:
-  Enabled: false
-Rails/SkipsModelValidations:
   Enabled: false
 Minitest/MultipleAssertions:
   Enabled: false

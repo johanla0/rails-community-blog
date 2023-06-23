@@ -17,11 +17,11 @@ class Posts::LikesController < Posts::ApplicationController
     @post = Post.find(params[:id])
     authorize @post, :unlike?
 
-    if !already_liked?
-      flash[:notice] = I18n.t(".flash.error.#{controller_name}.#{params[:action]}")
-    else
+    if already_liked?
       like = PostLike.likes_for(@post).find_by user_id: current_user.id
       like.destroy
+    else
+      flash[:notice] = I18n.t(".flash.error.#{controller_name}.#{params[:action]}")
     end
     redirect_to post_path(@post)
   end
