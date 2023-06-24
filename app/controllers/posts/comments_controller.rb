@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
 class Posts::CommentsController < Posts::ApplicationController
-  before_action :set_post, only: %i[respond create edit update destroy]
-
   def respond
     @comment = PostComment.new
     authorize @comment
 
+    @post = resource_post
     @parent_comment = PostComment.find(params[:comment_id])
   end
 
@@ -14,6 +13,7 @@ class Posts::CommentsController < Posts::ApplicationController
     @comment = PostComment.find(params[:id])
     authorize @comment
 
+    @post = resource_post
     @parent_comment = @comment.parent
   end
 
@@ -21,6 +21,7 @@ class Posts::CommentsController < Posts::ApplicationController
     @comment = PostComment.new(comment_params.merge(post_id: params[:post_id], user_id: current_user.id))
     authorize @comment
 
+    @post = resource_post
     if @comment.save
       flash[:success] = I18n.t(".flash.success.#{controller_name}.#{params[:action]}")
       render turbo_stream: [
@@ -49,6 +50,7 @@ class Posts::CommentsController < Posts::ApplicationController
     comment = PostComment.find(params[:id])
     authorize comment
 
+    @post = resource_post
     if comment.update(comment_params)
       flash[:success] = I18n.t(".flash.success.#{controller_name}.#{params[:action]}")
       render turbo_stream: [
@@ -76,6 +78,7 @@ class Posts::CommentsController < Posts::ApplicationController
     comment = PostComment.find(params[:id])
     authorize comment
 
+    @post = resource_post
     comment.destroy
 
     flash[:success] = I18n.t(".flash.success.#{controller_name}.#{params[:action]}")
@@ -98,10 +101,6 @@ class Posts::CommentsController < Posts::ApplicationController
   end
 
   private
-
-  def set_post
-    @post = Post.find(params[:post_id])
-  end
 
   def comment_params
     params.require(:post_comment).permit(:content, :parent_id)
