@@ -6,7 +6,6 @@ export default class extends Controller {
   static targets = [
     'comment',
     'form',
-    'textarea',
   ];
 
   scroll(e) {

@@ -1,5 +1,5 @@
 = turbo_frame_tag dom_id(comment) do
-  .card.my-3 data-scroll-to-parent-target='comment'
+  .card.mt-3.mb-2 data-scroll-to-parent-target='comment'
     .card-header.d-flex.justify-content-between.bg-secondary-subtle
       .d-flex.gap-3.justify-content-start.align-items-center
         div
@@ -12,7 +12,7 @@
           = link_to edit_post_comment_path(comment.post, comment), \
                     class: 'fs-6' do
             i.bi.bi-pencil-square
-        - if policy(comment).destroy? && !comment.has_children?
+        - if policy(comment).destroy?
           = link_to post_comment_path(comment.post, comment), \
                     data: { \
                       turbo_method: :delete, \
@@ -23,15 +23,16 @@
             i.bi.bi-trash
     .ps-3.pt-3.pb-2
       = comment.content
-      - if user_signed_in? && !comment.has_children?
+      - if user_signed_in?
         .d-block.mt-2
           = link_to t('.respond'), \
                     post_comment_respond_path(comment.post, comment), \
                     data: { \
-                      turbo_frame: 'respond', \
+                      turbo_frame: dom_id(comment, :respond), \
                       action: 'click->scroll-to-parent#respond' \
                     }, \
                     class: 'btn btn-sm btn-outline-primary'
     .ps-3.pb-2
       = render partial: 'posts/comments/shared/comment', \
                collection: comment.children
+  = turbo_frame_tag dom_id(comment, :respond)
