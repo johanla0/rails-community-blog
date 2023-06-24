@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    authorize current_user
+    authorize @user
   end
 
   def create
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    authorize current_user
+    authorize @user
 
     if @user.update(user_params)
       redirect_to user_path(@user), notice: I18n.t(".flash.success.#{controller_name}.#{params[:action]}")
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    authorize current_user
+    authorize @user
 
     @user.destroy
 

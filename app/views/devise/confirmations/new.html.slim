@@ -18,6 +18,6 @@ h2 = t('.resend_instructions')
               input_html: { autocomplete: 'email' }
 
   .form-actions
-    = f.button :submit, t('.resend_instructions')
+    = f.button :submit, t('.resend_instructions'), class: 'btn-primary'
 
 = render 'devise/shared/links'

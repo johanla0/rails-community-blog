@@ -11,6 +11,6 @@ h2 = t('.forgot_your_password')
             autofocus: true,
             input_html: { autocomplete: 'email' }
 
-  = f.button :submit, t('.send_instructions')
+  = f.button :submit, t('.send_instructions'), class: 'btn-primary'
 
 = render 'devise/shared/links'
