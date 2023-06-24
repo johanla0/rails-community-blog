@@ -6,6 +6,7 @@
       = render partial: 'posts/comments/shared/form',
                locals: { \
                  comment: @comment, \
-                 url: post_comment_path(@comment.post), \
-                 turbo_method: :patch \
+                 url: post_comment_path(@post), \
+                 turbo_method: :patch, \
+                 parent_comment: @parent_comment \
                }

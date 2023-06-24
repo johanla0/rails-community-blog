@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Posts::CommentsController < Posts::ApplicationController
-  before_action :set_post, only: %i[respond create update destroy]
+  before_action :set_post, only: %i[respond create edit update destroy]
 
   def respond
     @comment = PostComment.new
@@ -13,6 +13,8 @@ class Posts::CommentsController < Posts::ApplicationController
   def edit
     @comment = PostComment.find(params[:id])
     authorize @comment
+
+    @parent_comment = @comment.parent
   end
 
   def create
