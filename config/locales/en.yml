@@ -47,26 +47,26 @@ en:
   log_out: Log out
   my_profile: My profile
   new_post: New post
+  not_authorized: You are not authorized to perform this action
   posts:
     comments:
       edit:
         edit: Editing comment
       new:
         new: New comment
+      respond:
+        responding_to: Responding to
       shared:
         comment:
           respond: Respond
-      respond:
-        responding_to: Responding to
     edit:
       edit: Editing post
+    new:
+      new_post: New post
     slug:
       backend: Backend
       general: General
       ux: UX Design
-    new:
-      new_post: New post
-  unknown_author: No author
   show: Show
   show_post: Show this post
   sign_in: Sign in
@@ -75,6 +75,7 @@ en:
     one: 1 minute
     other: '%{count} minutes'
   title: Community blog
+  unknown_author: No author
   updated_at: 'Updated:'
   users:
     new:
