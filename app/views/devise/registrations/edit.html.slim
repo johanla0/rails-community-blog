@@ -21,7 +21,7 @@ h2 = t('.edit', resource: resource_name.to_s.humanize)
             required: true,
             input_html: { autocomplete: 'current-password' }
 
-  = f.button :submit
+  = f.button :submit, class: 'btn-primary'
 
 h3 = t('.cancel_account')
 = button_to t('.cancel_account'), \
