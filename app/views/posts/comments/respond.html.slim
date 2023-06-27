@@ -1,12 +1,12 @@
 = turbo_frame_tag dom_id(@parent_comment, :respond) do
-  .card.mt-2.mb-3
+  .card.mt-2.mb-3.border-primary data-respond-to-comment-target='comment'
     .card-header *{ class: %w[d-flex justify-content-between \
       align-items-center bg-secondary-subtle] }
       .ms-2
         => t('.responding_to')
         = link_to post_path(@post, anchor: dom_id(@parent_comment)), \
                   data: { \
-                    action: 'click->scroll-to-parent#scroll' \
+                    action: 'click->respond-to-comment#scrollToParent' \
                   } do
           = @parent_comment.author
       div

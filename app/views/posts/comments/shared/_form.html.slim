@@ -1,4 +1,4 @@
-= turbo_frame_tag 'form', data: { scroll_to_parent_target: 'form' } do
+= turbo_frame_tag 'form' do
   - if user_signed_in?
     - let local_assigns[:parent_comment].presence do |parent_comment|
       = simple_form_for comment, url:, data: { turbo_method: } do |f|

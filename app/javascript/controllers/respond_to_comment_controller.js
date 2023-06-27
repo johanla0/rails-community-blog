@@ -5,10 +5,9 @@ import { Controller } from '@hotwired/stimulus';
 export default class extends Controller {
   static targets = [
     'comment',
-    'form',
   ];
 
-  scroll(e) {
+  scrollToParent(e) {
     e.preventDefault();
     const anchor = e.currentTarget.href.split('#').pop();
     const scrollTo = document.getElementById(anchor);
@@ -23,14 +22,16 @@ export default class extends Controller {
     });
   }
 
-  _highlightParentComment(e) {
-    const card = e.currentTarget.closest('.card');
+  _highlightCommentCard(card) {
     card.classList.add('border-primary');
   }
 
   respond(e) {
     this._removeHighlighting();
-    this._highlightParentComment(e);
-    this.formTarget.scrollIntoView();
+
+    const parentCommentCard = e.currentTarget.closest('.card');
+    this._highlightCommentCard(parentCommentCard);
+
+    parentCommentCard.nextSibling.scrollIntoView();
   }
 }

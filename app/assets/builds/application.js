@@ -6798,9 +6798,9 @@
   application.debug = false;
   window.Stimulus = application;
 
-  // app/javascript/controllers/scroll_to_parent_controller.js
-  var scroll_to_parent_controller_default = class extends Controller {
-    scroll(e) {
+  // app/javascript/controllers/respond_to_comment_controller.js
+  var respond_to_comment_controller_default = class extends Controller {
+    scrollToParent(e) {
       e.preventDefault();
       const anchor = e.currentTarget.href.split("#").pop();
       const scrollTo = document.getElementById(anchor);
@@ -6813,20 +6813,18 @@
         card.classList.remove("border-primary");
       });
     }
-    _highlightParentComment(e) {
-      const card = e.currentTarget.closest(".card");
+    _highlightCommentCard(card) {
       card.classList.add("border-primary");
     }
     respond(e) {
       this._removeHighlighting();
-      this._highlightParentComment(e);
-      this.formTarget.scrollIntoView();
+      const parentCommentCard = e.currentTarget.closest(".card");
+      this._highlightCommentCard(parentCommentCard);
+      parentCommentCard.nextSibling.scrollIntoView();
     }
   };
-  __publicField(scroll_to_parent_controller_default, "targets", [
-    "comment",
-    "form",
-    "textarea"
+  __publicField(respond_to_comment_controller_default, "targets", [
+    "comment"
   ]);
 
   // node_modules/@popperjs/core/lib/index.js
@@ -11986,7 +11984,7 @@
   };
 
   // app/javascript/controllers/index.js
-  application.register("scroll-to-parent", scroll_to_parent_controller_default);
+  application.register("respond-to-comment", respond_to_comment_controller_default);
   application.register("toast", toast_controller_default);
 })();
 /*! Bundled license information:
