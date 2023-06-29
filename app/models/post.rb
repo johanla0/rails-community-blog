@@ -28,6 +28,6 @@ class Post < ApplicationRecord
   include PostRepository
 
   def liked_by?(user)
-    Post.liked_by(user).include? self
+    likes.exists?(user:)
   end
 end

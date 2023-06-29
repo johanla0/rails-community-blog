@@ -18,7 +18,7 @@ class Posts::LikesController < Posts::ApplicationController
     authorize @post, :unlike?
 
     if already_liked?
-      like = PostLike.likes_for(@post).find_by user_id: current_user.id
+      like = PostLike.find_by(post: @post, user: current_user)
       like.destroy
     else
       flash[:notice] = I18n.t(".flash.error.#{controller_name}.#{params[:action]}")
@@ -29,6 +29,6 @@ class Posts::LikesController < Posts::ApplicationController
   private
 
   def already_liked?
-    @post.liked_by?(current_user)
+    @post.likes.exists?(user: current_user)
   end
 end

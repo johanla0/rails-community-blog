@@ -7,7 +7,7 @@ module PostPresenter
   end
 
   def author
-    creator&.name || I18n.t('unknown_author')
+    creator.name
   end
 
   delegate :count, to: :likes, prefix: true

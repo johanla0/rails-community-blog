@@ -19,6 +19,4 @@ class PostComment < ApplicationRecord
   belongs_to :user, optional: true
 
   has_ancestry orphan_strategy: :destroy
-
-  include PostCommentRepository
 end

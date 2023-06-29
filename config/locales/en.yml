@@ -75,7 +75,6 @@ en:
     one: 1 minute
     other: '%{count} minutes'
   title: Community blog
-  unknown_author: No author
   updated_at: 'Updated:'
   users:
     new:
