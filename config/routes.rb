@@ -4,10 +4,10 @@ Rails.application.routes.draw do
   devise_for :users
   root 'posts#index'
 
-  resources :users, except: %i[index new]
-  resources :posts, except: :index do
+  resources :users, only: %i[show edit update destroy]
+  resources :posts, only: %i[show new edit create update destroy] do
     resources :likes, only: %i[create destroy], module: :posts
-    resources :comments, except: %i[index new show], module: :posts do
+    resources :comments, only: %i[edit create update destroy], module: :posts do
       get :respond
     end
   end
