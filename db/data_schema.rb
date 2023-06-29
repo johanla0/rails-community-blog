@@ -1,3 +1,1 @@
-# frozen_string_literal: true
-
-DataMigrate::Data.define(version: 20_230_620_231_918)
+DataMigrate::Data.define(version: 20230620231918)
