@@ -53,8 +53,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     delete post_comment_path(@post, @post_comment)
 
     assert_response :success
-    post_comment = PostComment.find_by id: @post_comment.id
 
-    assert { post_comment.blank? }
+    assert { PostComment.where(id: @post_comment.id).blank? }
   end
 end
