@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @comments = PostComment.root_comments_for(@post)
+    @comments = PostComment.roots.where(post: @post)
     @comment = PostComment.new
   end
 

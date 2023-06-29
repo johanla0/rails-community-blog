@@ -28,7 +28,7 @@ class Posts::CommentsController < Posts::ApplicationController
         turbo_stream.replace(
           helpers.dom_id(@post, :comments),
           partial: 'posts/comments',
-          locals: { comment: @comment, comments: PostComment.root_comments_for(@post), post: @post }
+          locals: { comment: @comment, comments: PostComment.roots.where(post: @post), post: @post }
         ),
         turbo_stream.replace(
           'form',
@@ -57,7 +57,7 @@ class Posts::CommentsController < Posts::ApplicationController
         turbo_stream.replace(
           helpers.dom_id(@post, :comments),
           partial: 'posts/comments',
-          locals: { comment:, comments: PostComment.root_comments_for(@post), post: @post }
+          locals: { comment:, comments: PostComment.roots.where(post: @post), post: @post }
         ),
         turbo_stream.replace(
           'form',
@@ -86,7 +86,7 @@ class Posts::CommentsController < Posts::ApplicationController
       turbo_stream.replace(
         helpers.dom_id(@post, :comments),
         partial: 'posts/comments',
-        locals: { comment:, comments: PostComment.root_comments_for(@post), post: @post }
+        locals: { comment:, comments: PostComment.roots.where(post: @post), post: @post }
       ),
       turbo_stream.replace(
         'form',
