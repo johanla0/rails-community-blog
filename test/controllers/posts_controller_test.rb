@@ -54,7 +54,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   test '#update' do
     attrs = {
       title: Faker::Book.title,
-      body: Faker::Lorem.paragraph_by_chars(number: 250, supplemental: false),
+      body: Faker::Lorem.paragraph_by_chars(number: 250, supplemental: false)
     }
 
     patch post_path(@post), params: { post: attrs }
