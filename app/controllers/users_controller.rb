@@ -3,7 +3,7 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id]).decorate
-    @posts = @user.posts.map(&:decorate)
+    @posts = @user.posts.includes([:category]).map(&:decorate)
   end
 
   def edit
