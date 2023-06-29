@@ -13,8 +13,9 @@ class PostsController < ApplicationController
   end
 
   def new
+    authorize Post
+
     @post = Post.new
-    authorize @post
   end
 
   def edit
@@ -22,7 +23,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params.merge(creator_id: current_user.id))
+    @post = current_user.posts.build(post_params)
     authorize @post
 
     if @post.save
