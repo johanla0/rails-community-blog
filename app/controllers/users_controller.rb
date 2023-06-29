@@ -11,16 +11,6 @@ class UsersController < ApplicationController
     authorize @user
   end
 
-  def create
-    @user = User.new(user_params)
-
-    if @user.save
-      redirect_to user_path(@user), notice: I18n.t(".flash.success.#{controller_name}.#{params[:action]}")
-    else
-      render :new, status: :unprocessable_entity
-    end
-  end
-
   def update
     @user = User.find(params[:id])
     authorize @user
@@ -44,6 +34,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :encrypted_password)
+    params.require(:user).permit(:first_name, :last_name, :email)
   end
 end
