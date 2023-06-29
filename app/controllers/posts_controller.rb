@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[show edit update destroy]
-
   def index
-    @posts = Post.all.order_by_created_date_desc
+    @posts = Post.all.order_by_created_date_desc.map(&:decorate)
   end
 
   def show
+    @post = Post.find(params[:id]).decorate
     @comments = PostComment.roots.where(post: @post)
     @comment = PostComment.new
   end
@@ -19,6 +18,7 @@ class PostsController < ApplicationController
   end
 
   def edit
+    @post = Post.find(params[:id]).decorate
     authorize @post
   end
 
@@ -34,6 +34,7 @@ class PostsController < ApplicationController
   end
 
   def update
+    @post = Post.find(params[:id]).decorate
     authorize @post
 
     if @post.update(post_params)
@@ -44,6 +45,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    @post = Post.find(params[:id]).decorate
     authorize @post
 
     @post.destroy
@@ -53,12 +55,6 @@ class PostsController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_post
-    @post = Post.find(params[:id])
-  end
-
-  # Only allow a list of trusted parameters through.
   def post_params
     params.require(:post).permit(:title, :body, :category_id)
   end

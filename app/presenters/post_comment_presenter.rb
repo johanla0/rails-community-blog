@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-module PostCommentPresenter
+class PostCommentPresenter < SimpleDelegator
   def author
-    user.name
+    user.decorate.name
   end
 end

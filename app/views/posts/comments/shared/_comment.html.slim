@@ -4,7 +4,7 @@
       .d-flex.gap-3.justify-content-start.align-items-center
         div
           = link_to '#', post_path(comment.post, anchor: dom_id(comment))
-          span.ms-2 = comment.author
+          span.ms-2 = comment.decorate.author
         = render partial: 'posts/shared/date_badge', \
                  locals: { date: comment.created_at }
       .d-flex.gap-2.justify-content-end

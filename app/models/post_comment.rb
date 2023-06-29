@@ -13,7 +13,7 @@
 #  ancestry   :string
 #
 class PostComment < ApplicationRecord
-  include PostCommentPresenter
+  include Presentable
 
   belongs_to :post, counter_cache: true
   belongs_to :user
