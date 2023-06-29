@@ -25,7 +25,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
 
   test '#create' do
     attrs = {
-      content: 'abc',
+      content: 'abc' * 5,
       user_id: @user.id
     }
     post post_comments_path(@post), params: { post_comment: attrs }
@@ -39,7 +39,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
 
   test '#update' do
     attrs = {
-      content: 'aaa'
+      content: 'aaa' * 5
     }
     patch post_comment_path(id: @post_comment.id, post_id: @post.id), params: { post_comment: attrs }
 
