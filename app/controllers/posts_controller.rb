@@ -2,12 +2,12 @@
 
 class PostsController < ApplicationController
   def index
-    @posts = Post.all.order_by_created_date_desc.map(&:decorate)
+    @posts = Post.all.order_by_created_date_desc.includes(%i[category creator]).map(&:decorate)
   end
 
   def show
     @post = Post.find(params[:id]).decorate
-    @comments = PostComment.roots.where(post: @post)
+    @comments = PostComment.roots.where(post: @post).includes(%i[post user])
     @comment = PostComment.new
   end
 
