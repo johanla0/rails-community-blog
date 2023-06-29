@@ -4,16 +4,16 @@ require 'test_helper'
 
 class LikesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @post = posts(:no_likes)
     @user = users(:john)
 
     sign_in @user
   end
 
   test '#create' do
+    post = posts(:no_likes)
     previous_like = PostLike.last
 
-    post post_likes_path(@post)
+    post post_likes_path(post)
 
     assert_response :redirect
 
@@ -22,13 +22,14 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
     assert { new_like.present? }
     assert { new_like != previous_like }
     assert { new_like.user == @user }
-    assert { new_like.post == @post }
+    assert { new_like.post == post }
   end
 
   test '#destroy' do
+    post = posts(:one)
     like = post_likes(:one)
 
-    delete post_like_path(@post.id, id: like.id)
+    delete post_like_path(post, like)
 
     assert_response :redirect
 
