@@ -6,7 +6,7 @@ class Posts::CommentsController < Posts::ApplicationController
     authorize @comment
 
     @post = resource_post
-    @parent_comment = PostComment.find(params[:comment_id])
+    @parent_comment = PostComment.find(params[:comment_id]).decorate
   end
 
   def edit
@@ -28,7 +28,7 @@ class Posts::CommentsController < Posts::ApplicationController
         turbo_stream.replace(
           helpers.dom_id(@post, :comments),
           partial: 'posts/comments',
-          locals: { comment: @comment, comments: PostComment.roots.where(post: @post), post: @post }
+          locals: { comment: @comment.decorate, comments: PostComment.where(post: @post).map(&:decorate), post: @post }
         ),
         turbo_stream.replace(
           'form',
@@ -47,7 +47,7 @@ class Posts::CommentsController < Posts::ApplicationController
   end
 
   def update
-    comment = PostComment.find(params[:id])
+    comment = PostComment.find(params[:id]).decorate
     authorize comment
 
     @post = resource_post
@@ -57,7 +57,7 @@ class Posts::CommentsController < Posts::ApplicationController
         turbo_stream.replace(
           helpers.dom_id(@post, :comments),
           partial: 'posts/comments',
-          locals: { comment:, comments: PostComment.roots.where(post: @post), post: @post }
+          locals: { comment:, comments: PostComment.where(post: @post).map(&:decorate), post: @post }
         ),
         turbo_stream.replace(
           'form',
@@ -86,7 +86,7 @@ class Posts::CommentsController < Posts::ApplicationController
       turbo_stream.replace(
         helpers.dom_id(@post, :comments),
         partial: 'posts/comments',
-        locals: { comment:, comments: PostComment.roots.where(post: @post), post: @post }
+        locals: { comment:, comments: PostComment.where(post: @post).map(&:decorate), post: @post }
       ),
       turbo_stream.replace(
         'form',

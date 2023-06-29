@@ -8,7 +8,7 @@
                   data: { \
                     action: 'click->respond-to-comment#scrollToParent' \
                   } do
-          = @parent_comment.decorate.author
+          = @parent_comment.author
       div
         = link_to post_path(@post, anchor: dom_id(@post, :comments)), \
                   data: { \

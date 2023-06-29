@@ -4,7 +4,7 @@
       .d-flex.gap-3.justify-content-start.align-items-center
         div
           = link_to '#', post_path(comment.post, anchor: dom_id(comment))
-          span.ms-2 = comment.decorate.author
+          span.ms-2 = comment.author
         = render partial: 'posts/shared/date_badge', \
                  locals: { date: comment.created_at }
       .d-flex.gap-2.justify-content-end
@@ -32,7 +32,7 @@
                       action: 'click->respond-to-comment#respond' \
                     }, \
                     class: 'btn btn-sm btn-outline-primary'
-    .ps-3.pb-2
-      = render partial: 'posts/comments/shared/comment', \
-               collection: comment.children
+    / .ps-3.pb-2
+    /   = render partial: 'posts/comments/shared/comment', \
+    /            collection: comment.children
   = turbo_frame_tag dom_id(comment, :respond)

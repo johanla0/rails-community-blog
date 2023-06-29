@@ -7,7 +7,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id]).decorate
-    @comments = PostComment.roots.where(post: @post).includes(%i[post user])
+    @comments = PostComment.where(post: @post).includes(%i[post user]).map(&:decorate)
     @comment = PostComment.new
   end
 
