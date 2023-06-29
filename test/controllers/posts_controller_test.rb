@@ -8,7 +8,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     @user = users(:john)
     @category = categories(:one)
 
-    @user_session = sign_in @user
+    sign_in @user
   end
 
   test '#index' do
@@ -18,38 +18,21 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test '#new' do
-    @user_session.get @user_session.new_post_path
+    get new_post_path
 
-    @user_session.assert_response :success
+    assert_response :success
   end
 
   test '#create' do
     attrs = {
-      body: @post.body,
-      title: @post.title,
-      creator_id: @user.id,
+      title: Faker::Book.title,
+      body: Faker::Lorem.paragraph_by_chars(number: 250, supplemental: false),
       category_id: @category.id
     }
 
-    @user_session.post @user_session.posts_path, params: { post: attrs }
+    post posts_path, params: { post: attrs }
 
-    @user_session.assert_response :redirect
-
-    post = Post.find_by(attrs)
-
-    assert { post.present? }
-  end
-
-  test '#create without creator' do
-    attrs = {
-      body: @post.body,
-      title: @post.title,
-      category_id: @category.id
-    }
-
-    @user_session.post @user_session.posts_path, params: { post: attrs }
-
-    @user_session.assert_response :redirect
+    assert_response :redirect
 
     post = Post.find_by(attrs)
 
@@ -63,21 +46,30 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test '#edit' do
-    @user_session.get @user_session.edit_post_path(@post)
+    get edit_post_path(@post)
 
-    @user_session.assert_response :success
+    assert_response :success
   end
 
   test '#update' do
-    @user_session.patch @user_session.post_path(@post), params: { post: { body: @post.body, title: @post.title } }
+    attrs = {
+      title: Faker::Book.title,
+      body: Faker::Lorem.paragraph_by_chars(number: 250, supplemental: false),
+    }
 
-    @user_session.assert_response :redirect
+    patch post_path(@post), params: { post: attrs }
+
+    assert_response :redirect
+    @post.reload
+
+    assert { @post.title == attrs[:title] }
+    assert { @post.body == attrs[:body] }
   end
 
   test '#destroy' do
-    @user_session.delete @user_session.post_path(@post)
+    delete post_path(@post)
 
-    @user_session.assert_response :redirect
+    assert_response :redirect
     post = Post.find_by id: @post.id
 
     assert { post.blank? }

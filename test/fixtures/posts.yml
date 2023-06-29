@@ -28,3 +28,15 @@ three:
   body: <%= Faker::Lorem.paragraph_by_chars(number: 20_000, supplemental: false) %>
   creator: jane
   category: two
+
+no_likes:
+  title: <%= Faker::Book.title %>
+  body: <%= Faker::Lorem.paragraph_by_chars(number: 250, supplemental: false) %>
+  creator: john
+  category: two
+
+no_comments:
+  title: <%= Faker::Book.title %>
+  body: <%= Faker::Lorem.paragraph_by_chars(number: 250, supplemental: false) %>
+  creator: john
+  category: two
