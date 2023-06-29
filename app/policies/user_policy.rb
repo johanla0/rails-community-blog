@@ -1,12 +1,17 @@
 # frozen_string_literal: true
 
 class UserPolicy < ApplicationPolicy
-  def edit?
+  def update?
     user.present? && self?
   end
 
-  alias update? edit?
-  alias destroy? edit?
+  def edit?
+    update?
+  end
+
+  def destroy?
+    user.present? && self?
+  end
 
   private
 

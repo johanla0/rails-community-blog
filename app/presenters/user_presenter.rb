@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module UserPresenter
+class UserPresenter < SimpleDelegator
   def name
     "#{first_name} #{last_name}"
   end

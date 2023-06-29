@@ -13,7 +13,7 @@
 #  category_id :integer
 #
 class Post < ApplicationRecord
-  include PostPresenter
+  include Presentable
 
   belongs_to :creator, class_name: 'User'
   alias_attribute :user, :creator

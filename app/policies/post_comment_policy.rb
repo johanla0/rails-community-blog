@@ -5,14 +5,21 @@ class PostCommentPolicy < ApplicationPolicy
     user.present?
   end
 
-  alias respond? create?
+  def respond?
+    user.present?
+  end
 
-  def edit?
+  def update?
     user.present? && owner?
   end
 
-  alias update? edit?
-  alias destroy? edit?
+  def edit?
+    update?
+  end
+
+  def destroy?
+    user.present?
+  end
 
   private
 
