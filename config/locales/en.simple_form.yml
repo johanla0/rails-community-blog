@@ -16,6 +16,7 @@ en:
     placeholders:
       defaults:
         body: Enter text
+        email: Enter email
         password: Enter password
         password_confirmation: Enter confirmation
         title: Enter title
