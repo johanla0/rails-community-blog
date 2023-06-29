@@ -1,24 +1,33 @@
 # frozen_string_literal: true
 
 class PostPolicy < ApplicationPolicy
-  def new?
+  def create?
     user.present?
   end
 
-  alias create? new?
+  def new?
+    create?
+  end
 
-  def edit?
+  def update?
     user.present? && owner?
   end
 
-  alias update? edit?
-  alias destroy? edit?
+  def edit?
+    update?
+  end
+
+  def destroy?
+    user.present? && owner?
+  end
 
   def like?
     user.present?
   end
 
-  alias unlike? like?
+  def unlike?
+    like?
+  end
 
   private
 
