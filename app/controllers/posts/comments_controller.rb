@@ -43,7 +43,17 @@ class Posts::CommentsController < Posts::ApplicationController
       ], status: :found
     else
       flash[:error] = I18n.t(".flash.error.#{controller_name}.#{params[:action]}")
-      redirect_back fallback_location: post_path(@post), status: :unprocessable_entity
+      render turbo_stream: [
+        turbo_stream.replace(
+          'form',
+          partial: 'posts/comments/shared/form',
+          locals: { comment: @comment, url: post_comments_path(@post), turbo_method: :post }
+        ),
+        turbo_stream.update(
+          'flash',
+          partial: 'layouts/shared/flash'
+        )
+      ], status: :unprocessable_entity
     end
   end
 
@@ -72,7 +82,13 @@ class Posts::CommentsController < Posts::ApplicationController
         )
       ], status: :found
     else
-      redirect_back fallback_location: post_path(@post), status: :unprocessable_entity
+      flash[:error] = I18n.t(".flash.error.#{controller_name}.#{params[:action]}")
+      render turbo_stream: [
+        turbo_stream.update(
+          'flash',
+          partial: 'layouts/shared/flash'
+        )
+      ], status: :unprocessable_entity
     end
   end
 
