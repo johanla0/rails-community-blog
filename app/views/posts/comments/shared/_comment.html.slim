@@ -39,6 +39,6 @@
           = render partial: 'posts/comments/shared/comment', \
                   locals: { \
                     comments: \
-                      comments.filter { |c| c[local_root] }.first.values \
+                      comments.find { |c| c[local_root] }.values \
                   }
     = turbo_frame_tag dom_id(local_root, :respond)

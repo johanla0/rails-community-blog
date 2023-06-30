@@ -5,6 +5,6 @@ exclude:
   - '**/devise/**/*.slim'
 linters:
   RuboCop:
-    enabled: false
+    enabled: true
   LineLength:
     max: 180
