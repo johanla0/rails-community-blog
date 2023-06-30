@@ -1,3 +1,10 @@
+---
+exclude:
+  - vendor/*
+  - node_modules/*
+  - '**/devise/**/*.slim'
 linters:
   RuboCop:
     enabled: false
+  LineLength:
+    max: 180

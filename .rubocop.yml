@@ -1,75 +1,58 @@
 # require: rubocop-rails
 ---
+require:
+  - rubocop-rails
+  - rubocop-performance
+
 AllCops:
   NewCops: enable
-  TargetRubyVersion: 3.1
+  TargetRubyVersion: 3.2.2
   TargetRailsVersion: 7
   DisplayCopNames: true
   Exclude:
-    - 'tmp/**/*'
-    - 'log/**/*'
-    - 'public/**/*'
-    - 'bin/**/*'
+    - 'bin/**'
+    - 'db/schema.rb'
+    - 'db/migrate/**'
+    - 'db/data_schema.rb'
     - 'vendor/**/*'
     - 'node_modules/**/*'
-    - 'db/migrate/*'
-    - 'db/schema.rb'
-    - 'db/data_schema.rb'
+    - 'vendor/**/*'
+    - 'node_modules/**/*'
+    - 'tmp/**/*'
+  SuggestExtensions: false
 
 Rails:
   Enabled: true
 
-require:
-  - rubocop-minitest
-  - rubocop-performance
-  - rubocop-rails
-  - rubocop-rake
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Layout/LineLength:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
 
 Style/Documentation:
   Enabled: false
-Style/ClassAndModuleChildren:
-  Enabled: false
-Style/IfUnlessModifier:
-  Enabled: false
-Layout/EmptyLinesAroundClassBody:
-  Enabled: false
-Minitest/MultipleAssertions:
-  Enabled: false
-Rails/InverseOf:
-  Enabled: false
-Layout/LineLength:
-  Max: 180
-  Exclude:
-    - 'config/initializers/devise.rb'
-    - 'app/views/**/*.jbuilder'
-
-Style/StructInheritance:
-  Exclude:
-    - 'app/policies/*.rb'
 
 Metrics/BlockLength:
   Enabled: false
-Metrics/AbcSize:
-  Max: 80
-Metrics/ClassLength:
-  Max: 250
-  Exclude:
-    - 'test/**/*.rb'
-Metrics/CyclomaticComplexity:
-  Max: 20
-Metrics/MethodLength:
-  CountComments: false
-  Max: 120
-Metrics/PerceivedComplexity:
-  Max: 20
+
+Style/AsciiComments:
+  Enabled: false
+
+Metrics/ParameterLists:
+  Enabled: false
 
 Rails/DynamicFindBy:
   Enabled: true
 
-Rails/UnknownEnv:
-  Environments:
-    - dev
-    - development
-    - production
-    - staging
-    - test
+Rails/InverseOf:
+  Enabled: false
