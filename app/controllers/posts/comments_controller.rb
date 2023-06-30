@@ -23,7 +23,7 @@ class Posts::CommentsController < Posts::ApplicationController
 
     @post = resource_post
     if @comment.save
-      comments = PostComment.roots.where(post: resource_post).includes(%i[post user]).map(&:subtree).map(&:arrange)
+      comments = PostComment.where(post: resource_post).includes(%i[post user]).arrange
       flash[:success] = I18n.t(".flash.success.#{controller_name}.#{params[:action]}")
       render turbo_stream: [
         turbo_stream.replace(
@@ -51,7 +51,7 @@ class Posts::CommentsController < Posts::ApplicationController
 
     @post = resource_post
     if comment.update(comment_params)
-      comments = PostComment.roots.where(post: resource_post).includes(%i[post user]).map(&:subtree).map(&:arrange)
+      comments = PostComment.where(post: resource_post).includes(%i[post user]).arrange
       flash[:success] = I18n.t(".flash.success.#{controller_name}.#{params[:action]}")
       render turbo_stream: [
         turbo_stream.replace(
@@ -77,7 +77,7 @@ class Posts::CommentsController < Posts::ApplicationController
     @post = resource_post
     comment.destroy
 
-    comments = PostComment.roots.where(post: resource_post).includes(%i[post user]).map(&:subtree).map(&:arrange)
+    comments = PostComment.where(post: resource_post).includes(%i[post user]).arrange
 
     flash[:success] = I18n.t(".flash.success.#{controller_name}.#{params[:action]}")
     render turbo_stream: [
