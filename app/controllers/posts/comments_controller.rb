@@ -27,32 +27,20 @@ class Posts::CommentsController < Posts::ApplicationController
       flash[:success] = I18n.t(".flash.success.#{controller_name}.#{params[:action]}")
       render turbo_stream: [
         turbo_stream.replace(
-          helpers.dom_id(@post, :comments),
-          partial: 'posts/comments',
-          locals: { comment: @comment.decorate, comments:, post: @post }
+          helpers.dom_id(@post, :comments), partial: 'posts/comments', locals: { comment: @comment.decorate, comments:, post: @post }
         ),
         turbo_stream.replace(
-          'form',
-          partial: 'posts/comments/shared/form',
-          locals: { comment: PostComment.new, url: post_comments_path(@post), turbo_method: :post }
+          'form', partial: 'posts/comments/shared/form', locals: { comment: PostComment.new, url: post_comments_path(@post), turbo_method: :post }
         ),
-        turbo_stream.update(
-          'flash',
-          partial: 'layouts/shared/flash'
-        )
+        turbo_stream.update('flash', partial: 'layouts/shared/flash')
       ], status: :found
     else
       flash[:error] = I18n.t(".flash.error.#{controller_name}.#{params[:action]}")
       render turbo_stream: [
         turbo_stream.replace(
-          'form',
-          partial: 'posts/comments/shared/form',
-          locals: { comment: @comment, url: post_comments_path(@post), turbo_method: :post }
+          'form', partial: 'posts/comments/shared/form', locals: { comment: @comment, url: post_comments_path(@post), turbo_method: :post }
         ),
-        turbo_stream.update(
-          'flash',
-          partial: 'layouts/shared/flash'
-        )
+        turbo_stream.update('flash', partial: 'layouts/shared/flash')
       ], status: :unprocessable_entity
     end
   end
@@ -67,27 +55,17 @@ class Posts::CommentsController < Posts::ApplicationController
       flash[:success] = I18n.t(".flash.success.#{controller_name}.#{params[:action]}")
       render turbo_stream: [
         turbo_stream.replace(
-          helpers.dom_id(@post, :comments),
-          partial: 'posts/comments',
-          locals: { comment:, comments:, post: @post }
+          helpers.dom_id(@post, :comments), partial: 'posts/comments', locals: { comment:, comments:, post: @post }
         ),
         turbo_stream.replace(
-          'form',
-          partial: 'posts/comments/shared/form',
-          locals: { comment: PostComment.new, url: post_comments_path(@post), turbo_method: :post }
+          'form', partial: 'posts/comments/shared/form', locals: { comment: PostComment.new, url: post_comments_path(@post), turbo_method: :post }
         ),
-        turbo_stream.update(
-          'flash',
-          partial: 'layouts/shared/flash'
-        )
+        turbo_stream.update('flash', partial: 'layouts/shared/flash')
       ], status: :found
     else
       flash[:error] = I18n.t(".flash.error.#{controller_name}.#{params[:action]}")
       render turbo_stream: [
-        turbo_stream.update(
-          'flash',
-          partial: 'layouts/shared/flash'
-        )
+        turbo_stream.update('flash', partial: 'layouts/shared/flash')
       ], status: :unprocessable_entity
     end
   end
@@ -104,19 +82,12 @@ class Posts::CommentsController < Posts::ApplicationController
     flash[:success] = I18n.t(".flash.success.#{controller_name}.#{params[:action]}")
     render turbo_stream: [
       turbo_stream.replace(
-        helpers.dom_id(@post, :comments),
-        partial: 'posts/comments',
-        locals: { comment:, comments:, post: @post }
+        helpers.dom_id(@post, :comments), partial: 'posts/comments', locals: { comment:, comments:, post: @post }
       ),
       turbo_stream.replace(
-        'form',
-        partial: 'posts/comments/shared/form',
-        locals: { comment: PostComment.new, url: post_comments_path(@post), turbo_method: :post }
+        'form', partial: 'posts/comments/shared/form', locals: { comment: PostComment.new, url: post_comments_path(@post), turbo_method: :post }
       ),
-      turbo_stream.update(
-        'flash',
-        partial: 'layouts/shared/flash'
-      )
+      turbo_stream.update('flash', partial: 'layouts/shared/flash')
     ], status: :ok
   end
 
