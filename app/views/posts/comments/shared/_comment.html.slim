@@ -1,38 +1,44 @@
-= turbo_frame_tag dom_id(comment) do
-  .card.mt-3.mb-2 data-respond-to-comment-target='comment'
-    .card-header.d-flex.justify-content-between.bg-secondary-subtle
-      .d-flex.gap-3.justify-content-start.align-items-center
-        div
-          = link_to '#', post_path(comment.post, anchor: dom_id(comment))
-          span.ms-2 = comment.decorate.author
-        = render partial: 'posts/shared/date_badge', \
-                 locals: { date: comment.created_at }
-      .d-flex.gap-2.justify-content-end
-        - if policy(comment).edit?
-          = link_to edit_post_comment_path(comment.post, comment), \
-                    class: 'fs-6' do
-            i.bi.bi-pencil-square
-        - if policy(comment).destroy?
-          = link_to post_comment_path(comment.post, comment), \
-                    data: { \
-                      turbo_method: :delete, \
-                      turbo_confirm: t('destroy_confirmation'), \
-                      turbo_frame: '_top' \
-                    }, \
-                    class: 'fs-6 link-secondary' do
-            i.bi.bi-trash
-    .ps-3.pt-3.pb-2
-      = comment.content
-      - if user_signed_in?
-        .d-block.mt-2
-          = link_to t('.respond'), \
-                    post_comment_respond_path(comment.post, comment), \
-                    data: { \
-                      turbo_frame: dom_id(comment, :respond), \
-                      action: 'click->respond-to-comment#respond' \
-                    }, \
-                    class: 'btn btn-sm btn-outline-primary'
-    .ps-3.pb-2
-      = render partial: 'posts/comments/shared/comment', \
-               collection: comment.children
-  = turbo_frame_tag dom_id(comment, :respond)
+- comments.flat_map(&:keys).map(&:decorate).each do |local_root|
+  = turbo_frame_tag dom_id(local_root) do
+    .card.mt-3.mb-2 data-respond-to-comment-target='comment'
+      .card-header.d-flex.justify-content-between.bg-secondary-subtle
+        .d-flex.gap-3.justify-content-start.align-items-center
+          div
+            = link_to '#', \
+                      post_path(local_root.post, anchor: dom_id(local_root))
+            span.ms-2 = local_root.author
+          = render partial: 'posts/shared/date_badge', \
+                  locals: { date: local_root.created_at }
+        .d-flex.gap-2.justify-content-end
+          - if policy(local_root).edit?
+            = link_to edit_post_comment_path(local_root.post, local_root), \
+                      class: 'fs-6' do
+              i.bi.bi-pencil-square
+          - if policy(local_root).destroy?
+            = link_to post_comment_path(local_root.post, local_root), \
+                      data: { \
+                        turbo_method: :delete, \
+                        turbo_confirm: t('destroy_confirmation'), \
+                        turbo_frame: '_top' \
+                      }, \
+                      class: 'fs-6 link-secondary' do
+              i.bi.bi-trash
+      .ps-3.pt-3.pb-2
+        = local_root.content
+        - if user_signed_in?
+          .d-block.mt-2
+            = link_to t('.respond'), \
+                      post_comment_respond_path(local_root.post, local_root), \
+                      data: { \
+                        turbo_frame: dom_id(local_root, :respond), \
+                        action: 'click->respond-to-comment#respond' \
+                      }, \
+                      class: 'btn btn-sm btn-outline-primary'
+      - if local_root.has_children?
+        .ps-3.pb-2
+          = render partial: 'posts/comments/shared/comment', \
+                  locals: { \
+                    comments: \
+                      comments.filter { |c| c[local_root] }.first.values \
+                  }
+    = turbo_frame_tag dom_id(local_root, :respond)

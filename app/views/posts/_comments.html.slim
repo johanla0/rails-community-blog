@@ -1,7 +1,7 @@
 = turbo_frame_tag dom_id(post, :comments) do
   section.my-4 data-controller = 'respond-to-comment'
     h2 id='comments' = t('commentary')
-    = render partial: 'posts/comments/shared/comment', collection: comments
+    = render partial: 'posts/comments/shared/comment', locals: { comments: }
     = turbo_frame_tag 'respond' do
       = render partial: 'posts/comments/shared/form', \
                locals: { \
