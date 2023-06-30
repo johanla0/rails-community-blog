@@ -26,6 +26,15 @@ export default class extends Controller {
     card.classList.add('border-primary');
   }
 
+  dismissResponse(e) {
+    e.preventDefault();
+    const dismissBtn = e.currentTarget;
+    const turboFrame = dismissBtn.closest('turbo-frame');
+    turboFrame.src = '';
+    dismissBtn.closest('.card').remove();
+    this._removeHighlighting();
+  }
+
   respond(e) {
     this._removeHighlighting();
 

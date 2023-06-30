@@ -19,4 +19,6 @@ class PostComment < ApplicationRecord
   belongs_to :user
 
   has_ancestry orphan_strategy: :destroy
+
+  validates :content, length: { minimum: 3 }
 end

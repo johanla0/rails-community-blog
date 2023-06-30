@@ -10,9 +10,9 @@
                   } do
           = @parent_comment.author
       div
-        = link_to post_path(@post, anchor: dom_id(@post, :comments)), \
+        = link_to '#', \
                   data: { \
-                    turbo_frame: '_top' \
+                    action: 'click->respond-to-comment#dismissResponse' \
                   }, \
                   class: 'fs-5 link-secondary' do
           i.bi.bi-x
