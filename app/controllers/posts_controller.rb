@@ -7,7 +7,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id]).decorate
-    @comments = PostComment.where(post: @post).includes(%i[post user]).arrange
+    @comments = @post.comments.includes(:user).arrange
     @comment = PostComment.new
   end
 

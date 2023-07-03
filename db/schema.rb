@@ -49,8 +49,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_29_132104) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "category_id"
-    t.integer "likes_count", default: 0
-    t.integer "comments_count", default: 0
     t.integer "post_likes_count", default: 0
     t.integer "post_comments_count", default: 0
     t.index ["category_id"], name: "index_posts_on_category_id"
