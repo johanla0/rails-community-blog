@@ -1,9 +1,12 @@
+### Community blog
+Just a simple community blog example with a pinch of Hotwire. Everybody can read it, but you need to sign up to post new articles and leave comments.
+
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/johanla0/rails-project-64/workflows/hexlet-check/badge.svg)](https://github.com/johanla0/rails-project-64/actions)
 [![Main CI](https://github.com/johanla0/rails-project-64/actions/workflows/main.yml/badge.svg)](https://github.com/johanla0/rails-project-64/actions/workflows/main.yml)
 
 ### App is located here
-TBU
+TBU (moving from PaaS to VPS)
 
 ### Instructions
 #### Install locally (no docker containers currently)
